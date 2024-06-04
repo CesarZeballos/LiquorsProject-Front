@@ -44,8 +44,10 @@ export interface ITeamMember {
 
 export interface IRecommendation {
   title: string;
+  imageB: string;
+  imageF: string;
+  imageP: string;
   description: string;
-  image: string;
   color: string;
   link: string;
 }
