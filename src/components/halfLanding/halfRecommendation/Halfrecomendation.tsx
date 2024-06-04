@@ -30,19 +30,19 @@ const HalfRecommendation = ({
       <img
         src={imageB}
         alt=""
-        className="absolute object-cover w-full h-[105%] z-0 opacity-95   "
+        className="absolute object-contain w-full h-[105%] z-0 opacity-95   "
         style={{ transform: `translateY(-${scrollY * 0.1}px)` }}
       />
       <img
         src={imageP}
         alt=""
-        className="absolute object-cover w-full h-[105%] z-0 opacity-95   "
+        className="absolute object-contain w-full h-[105%] z-0 opacity-95   "
         style={{ transform: `translateY(-${scrollY * 0.2}px)` }}
       />
       <img
         src={imageF}
         alt=""
-        className="absolute object-cover w-full h-[105%] z-0 opacity-95   "
+        className="absolute object-contain w-full h-[105%] z-0 opacity-95   "
         style={{ transform: `translateY(-${scrollY * 0.5}px)` }}
       />
       <div className="relative z-10 text-base">
