@@ -64,7 +64,7 @@ const HalfRecommendation = ({
         alt=""
         className="absolute object-contain w-full h-[105%] z-0 opacity-95"
         style={{
-          transform: `translateY(-${scrollY * 0.5}px)`,
+          transform: `translateY(-${scrollY * 0.3}px)`,
           transition: "transform 3s ease",
         }}
       />
@@ -72,7 +72,10 @@ const HalfRecommendation = ({
         src={imageF}
         alt=""
         className="absolute object-contain w-full h-[105%] z-0 opacity-95"
-        style={{ transform: `translateY(-${scrollY * 0.5}px)` }}
+        style={{
+          transform: `translateY(-${scrollY * 0.5}px)`,
+          transition: "transform 1s ease",
+        }}
       />
       <div className="relative z-10 text-base">
         <h1
