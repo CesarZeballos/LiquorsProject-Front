@@ -102,7 +102,7 @@ const ProductFilterCard: React.FC<ProductFilterCardProps> = ({
             />
             <div className="flex">
               {Array.from({ length: rating }, (_, index) => (
-                <StarIcon key={index} className="text-yellow-500" />
+                <StarIcon key={index} className="text-wine" />
               ))}
             </div>
           </div>

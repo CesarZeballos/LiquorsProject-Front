@@ -11,12 +11,15 @@ const Product: React.FC = (): React.ReactNode => {
   //valors de barra de busqueda
   const [search, setSearch] = useState({item: ''});
 
+
   const router = useRouter()
 
   const handleFilterChange = (newFilters: any) => {
     setFilters(newFilters);
     //Aquí se maneja la lógica de filtrado de productos usando los filtros actualizados.
   };
+
+  
 
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;

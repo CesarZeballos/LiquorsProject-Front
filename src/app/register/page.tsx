@@ -11,7 +11,7 @@ import validate from "@/utils/validate";
 import registerUserFirebase from "@/utils/registerFirebase";
 //FIREBASE CONFIGS
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 
 
 const RegisterComponent: React.FC = (): React.ReactNode => {
@@ -24,16 +24,17 @@ const RegisterComponent: React.FC = (): React.ReactNode => {
 
   //ojo con modularizar esta config, me dio problemas.
   const firebaseConfig = {
-    apiKey: "AIzaSyDqE_jxE5V0OgwbwLCLON_EjnroiQZyIgo",
-    authDomain: "liquors-12b23.firebaseapp.com",
-    projectId: "liquors-12b23",
-    storageBucket: "liquors-12b23.appspot.com",
-    messagingSenderId: "713998563348",
-    appId: "1:713998563348:web:65bb9301a4c0ea78b00f01"
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   };
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+  
   
   const router = useRouter();
 
@@ -59,8 +60,6 @@ const RegisterComponent: React.FC = (): React.ReactNode => {
     registerUserFirebase(formData, auth, createUserWithEmailAndPassword, setIsSuccess, setErrors, router, errors, setIsLoading, setToken )
     }
 
-    console.log(registerToken);
-    
 
   return (
     <div className="flex justify-center items-center text-center pt-32 pb-32 bg-white">

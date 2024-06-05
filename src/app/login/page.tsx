@@ -6,11 +6,13 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 //INTERFACES
 import { Login } from "@/interfaces/interfaz";
-
+//UTILS
 import loginUserFireBase from "@/utils/loginFireBase";
-
+import loginUserFireBaseGoogle from "@/utils/loginFireBaseGoogle";
+import loginUserFireBaseFacebook from "@/utils/loginFireBaseFacebook";
+//FIREBASE
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 
 
 const LoginComponent: React.FC = (): React.ReactNode => {
@@ -31,12 +33,20 @@ const LoginComponent: React.FC = (): React.ReactNode => {
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
 
   const router = useRouter();
   
+  //estados locales de login convencional
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorState, setError] = useState(null);
+
+  //estados locales de login con google (aun sin uso)
+  const [errorStateGoogle, setErrorGoogle] = useState(null);
+  const [isSuccessGoogle, setIsSuccessGoogle] = useState(false);
+  const [isLoadingGoogle, setIsLoadingGoogle] = useState(false);
+
 
   //EVENT HANDLER LLENADO DE INPUTS
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,6 +61,11 @@ const LoginComponent: React.FC = (): React.ReactNode => {
     loginUserFireBase(formData, auth, signInWithEmailAndPassword, setIsSuccess, setError, router, setIsLoading);
   };
 
+  //EVENT HANDLER ENVIO DE FORMULARIO CON GOOGLE
+  const handleGoogleSignIn = async () => {
+    setIsLoadingGoogle(true)
+    loginUserFireBaseGoogle(auth, provider, router, setErrorGoogle, setIsLoadingGoogle, setIsSuccessGoogle, signInWithPopup)
+  }
   
   return (
     <div className="flex justify-center items-center  text-center pt-32 pb-32 bg-white">
@@ -104,6 +119,20 @@ const LoginComponent: React.FC = (): React.ReactNode => {
             {isSuccess && <p className="inline-block mt-2 rounded bg-green-500 text-white p-2">¡Login exitoso! <br/> redirigiendo a home...</p>}
             {errorState && <p className="inline-block cursor-pointer w-1/5 rounded bg-red-500 text-white p-2 mt-2">{errorState}</p>}
           </form>
+          
+          <div className="flex mt-0 mb-10 px-9 flex-row items-center">
+            <hr className="w-1/2 border-gray-400"></hr>
+            <p className="mx-4">o</p>
+            <hr className="w-1/2 border-gray-400"></hr>
+          </div>   
+            
+            <button onClick={handleGoogleSignIn} className="rounded-3xl mb-11 w-3/4 border-2 border-grey3 hover:border-blueGoogle font-plus-jakarta-sans">
+              <div className="flex flex-row p-2" >
+                <img className="justify-start" src="https://accounts.scdn.co/sso/images/new-google-icon.72fd940a229bc94cf9484a3320b3dccb.svg"></img>
+                <p className="justify-center pl-5">{isLoadingGoogle ? 'Enviando...' : 'Continuar con Google'}</p>
+              </div>
+            </button>
+
         </div>      
     </div>
   );
