@@ -67,3 +67,9 @@ export interface ISuscribe {
   price: number;
   onClick: MouseEventHandler;
 }
+
+export interface IPremium {
+  type: string;
+  status: string;
+  amount: number;
+}

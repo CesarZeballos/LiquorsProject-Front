@@ -1,6 +1,10 @@
-import { ISuscribe } from "@/interfaces/interfaz";
-import axios from "axios";
+import { IPremium, ISuscribe } from "@/interfaces/interfaz";
 
+export const suscribePremium: IPremium = {
+  type: "premium",
+  status: "active",
+  amount: 100,
+};
 export const arraySuscribe: ISuscribe[] = [
   {
     title: "Plan Premium",
@@ -8,7 +12,6 @@ export const arraySuscribe: ISuscribe[] = [
     description2: "Acceso a newsletters mensuales.",
     description3: `Podrás obtenes la "Caja de mes", con el artículo favorito del mes`,
     description4: "Descuentos en eventos.",
-
     price: 4.99,
     onClick: () => {
       alert("Evento Premium");
