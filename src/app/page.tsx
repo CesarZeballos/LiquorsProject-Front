@@ -21,7 +21,7 @@ export default function Landing() {
         {/*SECCION DOS DE TARJETAS */}
         <div className="w-full bg-black">
           <h1 className="text-center font-plus-jakarta-sans text-2xl mt-6 text-white font-normal mb-4 relative z-10">
-            Only <b className="text-gin">Gin's</b>
+            Only <b className="text-gin">Gins</b>
           </h1>
         </div>
         <ExpandMoreIcon className="flex items-center mt-6" />
