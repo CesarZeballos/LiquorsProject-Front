@@ -6,7 +6,7 @@ import { ISuscribe } from "@/interfaces/interfaz";
 
 const SuscribeCards = () => {
   return (
-    <div className="p-6 ">
+    <div className="p-6 bg-greyVivino">
       <h2 className="text-3xl font-plus-jakarta-sans text-center mb-6">
         Plan de suscripciones
       </h2>

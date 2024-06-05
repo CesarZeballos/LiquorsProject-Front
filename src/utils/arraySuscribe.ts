@@ -17,10 +17,10 @@ export const arraySuscribe: ISuscribe[] = [
 
   {
     title: "Plan Liquors para Empresas",
-    description1: "Puedes hacer desaparecer el WiFi de tus vecinos",
-    description2: "Acceso a los spoilers de todas las series",
-    description3: "Puedes teletransportarte a la fila de adelante",
-    description4: "Descripción mágica 2 que no se me ocurre",
+    description1: "Te contamos el findal de One Piece antes de que te mueras",
+    description2: "Puedes publicar productos",
+    description3: "Puedes hacer otras cosas we",
+    description4: "Descripción mágica que no se me ocurre",
     price: 14.99,
     onClick: () => {
       alert("evento Empresa");
