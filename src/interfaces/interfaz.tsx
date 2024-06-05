@@ -1,3 +1,5 @@
+import { MouseEventHandler } from "react";
+
 export interface Login {
   email: string;
   password: string;
@@ -54,4 +56,14 @@ export interface IRecommendation {
 
 export interface ProductFiltered {
   item: string;
+}
+
+export interface ISuscribe {
+  title: string;
+  description1: string;
+  description2: string;
+  description3: string;
+  description4: string;
+  price: number;
+  onClick: MouseEventHandler;
 }

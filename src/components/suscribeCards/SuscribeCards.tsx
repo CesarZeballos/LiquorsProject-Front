@@ -1,15 +1,19 @@
+"use client";
 import React from "react";
 import SuscribeCard from "./SuscribeCard";
+import { arraySuscribe } from "@/utils/arraySuscribe";
+import { ISuscribe } from "@/interfaces/interfaz";
+
 const SuscribeCards = () => {
   return (
     <div className="p-6 ">
-      <h2 className="text-3xl font-bold text-center mb-6">
-        Planes de Suscripción, (maqueta)
+      <h2 className="text-3xl font-plus-jakarta-sans text-center mb-6">
+        Plan de suscripciones
       </h2>
       <div className="flex flex-row justify-around items-center">
-        <SuscribeCard />
-        <SuscribeCard />
-        <SuscribeCard />
+        {arraySuscribe?.map((p: ISuscribe) => (
+          <SuscribeCard key={p.title} product={p} />
+        ))}
       </div>
     </div>
   );
