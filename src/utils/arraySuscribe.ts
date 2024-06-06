@@ -26,7 +26,7 @@ export const arraySuscribe: ISuscribe[] = [
     description4: "Descripción mágica que no se me ocurre",
     price: 14.99,
     onClick: () => {
-      alert("evento Empresa");
+      alert("evento Empresa c:");
     },
   },
 ];
