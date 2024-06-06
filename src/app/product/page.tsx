@@ -11,6 +11,10 @@ const Product: React.FC = (): React.ReactNode => {
   //valors de barra de busqueda
   const [search, setSearch] = useState({item: ''});
 
+  //TOKEN DE USUARIO PREMIUN O CONVENCIONAL
+  const [hasToken, setHasToken] = useState<boolean>(true); // Cambia esto según tu lógica de autenticación
+  //ESTADO PARA OCULTAR O MOSTRAR FILTRO.
+  const [isFilterVisible, setIsFilterVisible] = useState<boolean>(false);
 
   const router = useRouter()
 
@@ -18,8 +22,6 @@ const Product: React.FC = (): React.ReactNode => {
     setFilters(newFilters);
     //Aquí se maneja la lógica de filtrado de productos usando los filtros actualizados.
   };
-
-  
 
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -41,9 +43,20 @@ const Product: React.FC = (): React.ReactNode => {
     }
   };
 
+  //HANDLER PARA BOTON QUE OCULTA/MUESTRA
+  const toggleFilterVisibility = () => {
+    if (hasToken) {
+      setIsFilterVisible(!isFilterVisible);
+    } else {
+      alert("Debe suscribirse a cuenta premium");
+    }
+  };
+
   return (
     <div>
-      <div className="flex flex-col bg-greyVivino items-center">
+      
+      {/* SEARCHBAR */}
+      <section className="flex justify-center bg-greyVivino ">
         <input placeholder="buscar..." 
           className=" p-2 mb-2 pb-2  rounded-[25px] border border-gray-300 mt-2"
           type="text" 
@@ -51,13 +64,24 @@ const Product: React.FC = (): React.ReactNode => {
           name="item" 
           onKeyDown={handleKeyDown} 
           onChange={inputHandler}/>
-      </div>
-      <div className="flex pt-10 pb-10 bg-greyVivino  items-start">
-        <ProductFilterCard onFilterChange={handleFilterChange} />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-           <MapProductCard />
-        </div>
-      </div>
+      </section>
+
+      {/*BOTON FILTRO, FILTRO Y TARJETA PRODUCTOS */}
+      <section className="flex pt-10 pb-10 bg-greyVivino  items-start">
+           {/*BOTON PARA DESPLEGAR/OCULTAR FILTRO */}
+          <button className="mb-4 px-4 py-2 bg-wine text-white rounded-lg" onClick={toggleFilterVisibility}>
+            {isFilterVisible ? "Ocultar Filtro" : "Mostrar Filtro"}
+          </button>
+    
+          {/*TARJETAS CON FILTROS */}
+          {isFilterVisible && <ProductFilterCard onFilterChange={handleFilterChange} />}
+      
+          {/*TARJETAS CON PRODUCTOS */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <MapProductCard />
+          </div>
+      </section>
+
     </div>
   );
 };

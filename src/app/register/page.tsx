@@ -3,6 +3,7 @@ import React from "react";
 //HOOKS
 import { useState} from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 //INTERFACES DATOS
 import { Register} from "@/interfaces/interfaz";
 //FUNCION PARA VALIDAR FORM.
@@ -15,12 +16,14 @@ import { getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 
 
 const RegisterComponent: React.FC = (): React.ReactNode => {
+
   //ESTADOS
   const [formData, setFormData] = useState<Register>({
     name: '',
     email: '',
     password: '',
   });
+
 
   //ojo con modularizar esta config, me dio problemas.
   const firebaseConfig = {
@@ -62,13 +65,13 @@ const RegisterComponent: React.FC = (): React.ReactNode => {
 
 
   return (
-    <div className="flex justify-center items-center text-center pt-32 pb-32 bg-white">
+    <div className="flex justify-center items-center text-center pt-32 pb-32 bg-greyVivino">
         <div className="justify-start justmt-0 mr-32">
           <h1 className="pb-8 text-gray-600 text-6xl font-normal">Unite a </h1><p className="text-wine pb-8 font-Lato text-6xl">Liquors</p>
         </div>
 
         <div className="rounded border border-wine">
-          <form className="justify-end w-96  text-sm p-12" onSubmit={handleSubmit}>
+          <form className="justify-end w-96 bg-white text-sm p-12" onSubmit={handleSubmit}>
 
             <div className="pb-2">
               <input
@@ -107,6 +110,15 @@ const RegisterComponent: React.FC = (): React.ReactNode => {
               />
               {errors.password && <p className="text-gray-500 max-w-full">{errors.password}</p>}
             </div>
+            
+            
+            <div className="inline-block pb-8 pt-5">
+              ¿Ya estas registrado? <br/><br/>
+              <Link href='/login'>
+                <span className="text-black hover:text-yellow-400 transition-colors duration-100">Iniciar Sesion</span>
+              </Link><br/>
+            </div>
+
 
             <div className="text-center">
               <button

@@ -1,5 +1,4 @@
 import Carousel from "@/components/carousel/Carousel";
-
 import BannerProducts from "@/components/bannerProductHome/banner";
 import React from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";

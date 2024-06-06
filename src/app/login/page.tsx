@@ -68,12 +68,12 @@ const LoginComponent: React.FC = (): React.ReactNode => {
   }
   
   return (
-    <div className="flex justify-center items-center  text-center pt-32 pb-32 bg-white">
+    <div className="flex justify-center items-center  text-center pt-32 pb-32 bg-greyVivino">
         <div className="justify-start justmt-0 mr-32">
           <h1 className="pb-8 text-gray-600 text-6xl font-normal">Unite a </h1><p className="text-wine pb-8 font-Lato text-6xl">Liquors</p>
         </div>
 
-        <div className="rounded border border-wine">
+        <div className="rounded border bg-white border-wine">
           <form className="justify-end w-96  bg-white p-12" onSubmit={handleSubmit}>
             <div className="pb-2">
               <input
@@ -120,18 +120,18 @@ const LoginComponent: React.FC = (): React.ReactNode => {
             {errorState && <p className="inline-block cursor-pointer w-1/5 rounded bg-red-500 text-white p-2 mt-2">{errorState}</p>}
           </form>
           
-          <div className="flex mt-0 mb-10 px-9 flex-row items-center">
+          <div className="flex mt-0 bg-white mb-10 px-9 flex-row items-center">
             <hr className="w-1/2 border-gray-400"></hr>
             <p className="mx-4">o</p>
             <hr className="w-1/2 border-gray-400"></hr>
           </div>   
             
-            <button onClick={handleGoogleSignIn} className="rounded-3xl mb-11 w-3/4 border-2 border-grey3 hover:border-blueGoogle font-plus-jakarta-sans">
-              <div className="flex flex-row p-2" >
+          <button onClick={handleGoogleSignIn} className="rounded-3xl  mb-11 w-3/4 border-2 border-grey3 hover:border-blueGoogle font-plus-jakarta-sans">
+            <div className="flex flex-row p-2" >
                 <img className="justify-start" src="https://accounts.scdn.co/sso/images/new-google-icon.72fd940a229bc94cf9484a3320b3dccb.svg"></img>
                 <p className="justify-center pl-5">{isLoadingGoogle ? 'Enviando...' : 'Continuar con Google'}</p>
-              </div>
-            </button>
+            </div>
+          </button>
 
         </div>      
     </div>
