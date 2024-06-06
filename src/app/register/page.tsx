@@ -3,6 +3,7 @@ import React from "react";
 //HOOKS
 import { useState} from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 //INTERFACES DATOS
 import { Register} from "@/interfaces/interfaz";
 //FUNCION PARA VALIDAR FORM.
@@ -15,12 +16,14 @@ import { getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 
 
 const RegisterComponent: React.FC = (): React.ReactNode => {
+
   //ESTADOS
   const [formData, setFormData] = useState<Register>({
     name: '',
     email: '',
     password: '',
   });
+
 
   //ojo con modularizar esta config, me dio problemas.
   const firebaseConfig = {
@@ -107,6 +110,15 @@ const RegisterComponent: React.FC = (): React.ReactNode => {
               />
               {errors.password && <p className="text-gray-500 max-w-full">{errors.password}</p>}
             </div>
+            
+            
+            <div className="inline-block pb-8 pt-5">
+              ¿Ya estas registrado? <br/><br/>
+              <Link href='/login'>
+                <span className="text-black hover:text-yellow-400 transition-colors duration-100">Iniciar Sesion</span>
+              </Link><br/>
+            </div>
+
 
             <div className="text-center">
               <button
