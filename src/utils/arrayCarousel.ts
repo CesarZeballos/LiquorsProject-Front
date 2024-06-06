@@ -8,3 +8,5 @@ export const arrayTexts = [
   "descubre lo más elegante en el mercado.",
   "las mejores opciones para disfrutar con amigos.",
 ];
+
+export const arrayColors = ["text-wine", "text-blue", "text-darkgreen"];

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { arrayCarousel } from "@/utils/arrayCarousel";
+import { arrayCarousel, arrayColors } from "@/utils/arrayCarousel";
 import { arrayTexts } from "@/utils/arrayCarousel";
 /* de momento este array no lo voy a usar, pero la idea es que se vea al cambiar el state, y cambie junto con la imagen */
 
@@ -44,9 +44,11 @@ const Carousel = () => {
           }}
         />
       ))}
-      {/*    <div className="absolute inset-0 flex items-center justify-center text-wine text-5xl font-plus-jakarta-sans bg-opacity-50">
-        {arrayTexts[currentImageIndex]}
-      </div> */}
+      <div
+        className={`absolute inset-0 flex items-center justify-center  text-5xl font-plus-jakarta-sans  bg-opacity-50`}
+      >
+        {/*    <p>{arrayTexts[currentImageIndex]}</p> */}
+      </div>
       <button
         className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
         onClick={prevImage}
