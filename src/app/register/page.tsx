@@ -65,13 +65,13 @@ const RegisterComponent: React.FC = (): React.ReactNode => {
 
 
   return (
-    <div className="flex justify-center items-center text-center pt-32 pb-32 bg-white">
+    <div className="flex justify-center items-center text-center pt-32 pb-32 bg-greyVivino">
         <div className="justify-start justmt-0 mr-32">
           <h1 className="pb-8 text-gray-600 text-6xl font-normal">Unite a </h1><p className="text-wine pb-8 font-Lato text-6xl">Liquors</p>
         </div>
 
         <div className="rounded border border-wine">
-          <form className="justify-end w-96  text-sm p-12" onSubmit={handleSubmit}>
+          <form className="justify-end w-96 bg-white text-sm p-12" onSubmit={handleSubmit}>
 
             <div className="pb-2">
               <input

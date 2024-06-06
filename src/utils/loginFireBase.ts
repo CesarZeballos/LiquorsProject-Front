@@ -21,6 +21,7 @@ const loginUserFireBase = async (formData: any, auth:any, signInWithEmailAndPass
         //TOKEN DEVUELTO POR BACKEND, CARGO AL LOCALSTORAGE:  ese token me da permisos a la ruta de usuarios
         const loginTokenBackend = JSON.stringify(response.token);
         localStorage.setItem("loginOrRegisterBackendToken", loginTokenBackend)*/ 
+        
         setIsSuccess(true);
         setError(null)
         setTimeout(() => {
@@ -32,7 +33,7 @@ const loginUserFireBase = async (formData: any, auth:any, signInWithEmailAndPass
         setError(errorMessage);
         setIsSuccess(false);
   } finally {
-    setIsLoading(false);
+       setIsLoading(false);
   }
 };
 

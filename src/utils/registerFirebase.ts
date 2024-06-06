@@ -18,6 +18,7 @@ const registerUserFirebase = async (formData: any, auth:any, createUserWithEmail
             //TOKEN DEVUELTO POR BACKEND, CARGO AL LOCALSTORAGE:  ese token me da permisos a la ruta de usuarios
             const registerTokenBackend = JSON.stringify(response.token);
             localStorage.setItem("loginOrRegisterBackendToken", registerTokenBackend)*/
+            
             setIsSuccess(true);
             setErrors({});
             setTimeout(() => {

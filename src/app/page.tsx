@@ -13,7 +13,6 @@ export default function Landing() {
           Explore our <b className="text-wine">wine</b> categories
         </h1>
         <ExpandMoreIcon className="flex items-center" />
-        
         <div className="flex space-x-4">
           <BannerProducts />
         </div>
