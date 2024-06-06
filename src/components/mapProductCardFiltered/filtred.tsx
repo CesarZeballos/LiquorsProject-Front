@@ -22,8 +22,8 @@ const MapProductCardFiltered = () => {
   return (
       <>
           {dataGlobal.map((product: any) => (
-            product.name.toLowerCase().includes(productFiltered.toLowerCase()) ? 
-                <ProductCard key={product.id} product={product} /> : <p key={product.id}></p>
+            product.name.toLowerCase().includes(productFiltered.toLowerCase()) && 
+                <ProductCard key={product.id} product={product} />
     ))}
       </>
   );

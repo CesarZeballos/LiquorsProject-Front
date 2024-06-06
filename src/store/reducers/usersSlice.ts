@@ -17,7 +17,6 @@ const usersSlice = createSlice({
     readUsers(state, action: PayloadAction<IUser>) {
       state = action.payload;
     },
-
     updateUsers(state, action) {},
     deleteUsers(state, action) {},
   },

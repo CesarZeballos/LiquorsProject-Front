@@ -17,15 +17,11 @@ export const MapProductCard: React.FC = (): React.ReactNode => {
 
  //const [dataGlobalLocal, setDataGlobalLocal] = useState()
 
- console.log(dataGlobal.length);
+ console.log(dataGlobal);
 
   //GET PRODUCTS A LA API + CARGA DE DATOS EN LA STORE.
   useEffect(() => {
-    if (dataGlobal.length === 5) {
-      return; // Corta la ejecución del efecto si la longitud es igual a 5
-    }
-  
-    if (dataGlobal.length === 0 && dataGlobal.length <= 5) {
+    if (dataGlobal.length === 0) {
       fetchProducts(dispatch);
     }
   }, [dispatch, dataGlobal.length]);

@@ -3,11 +3,13 @@ import Carousel from "@/components/carousel/Carousel";
 import BannerProducts from "@/components/bannerProductHome/banner";
 import React from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ButtonCompra from "@/components/buttonCompra/ButtonCompra";
 
 export default function Landing() {
   return (
     <div>
       <Carousel></Carousel>
+      {/*   <ButtonCompra></ButtonCompra> */}
       <div className="flex flex-col bg-greyMLfilter scroll-smooth overflow-auto pt-10 items-center">
         {/*SECCION UNO DE TARJETAS */}
         <h1 className="text-center text-2xl text-black font-plus-jakarta-sans font-normal mb-4">

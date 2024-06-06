@@ -3,3 +3,10 @@ export const arrayCarousel: string[] = [
   "/slice2.png",
   "/slice3.png",
 ];
+export const arrayTexts = [
+  "buscas los mejores vinos?",
+  "descubre lo más elegante en el mercado.",
+  "las mejores opciones para disfrutar con amigos.",
+];
+
+export const arrayColors = ["text-wine", "text-blue", "text-darkgreen"];
