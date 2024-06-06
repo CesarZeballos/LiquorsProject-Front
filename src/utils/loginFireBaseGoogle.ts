@@ -14,14 +14,16 @@ const loginUserFireBaseGoogle = async (auth: any, provider: any, router: any, se
         localStorage.setItem("uidFirebaseGoogleLogin", userDataUid)
 
         //____________________________________POST LOGIN/REGISTER GOOGLE A BACK END______________________________________
-        /*const loginObjetGoogle = {
+        const loginObjetGoogle = {
             name: result.user.displayName,
             email: result.user.email,
             firebaseUid: result.user.uid
         }
         console.log(loginObjetGoogle);
-        const response = await axios.post("https://liquors-project.onrender.com/users", loginObjetGoogle)*/
-        
+        const response = await axios.post("https://liquors-project.onrender.com/users/signin", loginObjetGoogle)
+        //TOKEN DEVUELTO POR BACKEND, CARGO AL LOCALSTORAGE:  ese token me da permisos a la ruta de usuarios
+        const registerTokenBackend = JSON.stringify(response.data.token);
+        localStorage.setItem("loginOrRegisterBackendToken", registerTokenBackend)
         setErrorGoogle(null)
         setIsSuccessGoogle(true);
         setTimeout(() => {
