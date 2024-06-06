@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const loginUserFireBase = async (formData: any, auth:any, signInWithEmailAndPassword: any ,setIsSuccess: any, setError: any, router: any, setIsLoading: any) => {
 
   try {
@@ -7,20 +9,24 @@ const loginUserFireBase = async (formData: any, auth:any, signInWithEmailAndPass
         //TOKEN LOGIN FIREBASE, CARGO AL LOCALSTORAGE
         const user = JSON.stringify(userCredential.user.accessToken);
         localStorage.setItem("loginToken", user)
-        //UID LOGIN FIREBASE, CARGO AL LOCALSTORAGE
-        const userUid = JSON.stringify(userCredential.user.uid)
+        //UID LOGIN FIREBASE, CARGO AL LOCALSTORAGE /--> este tomi lo envia al back para recibir otro
+        const userUid = userCredential.user.uid
+        JSON.stringify(userUid)
         localStorage.setItem("uidLoginFirebase", userUid)
 
         //__________________________________________POST LOGIN A BACK END_________________________________________
-        /*const loginObjet = {
+        const loginObjet = {
           email: userCredential.user.email,
           firebaseUid: userCredential.user.uid
           }
-        console.log(loginObjet);
-        const response = await axios.post("https://liquors-project.onrender.com/users/signup", loginObjetGoogle)
+        const response = await axios.post("https://liquors-project.onrender.com/users/signup", loginObjet)
         //TOKEN DEVUELTO POR BACKEND, CARGO AL LOCALSTORAGE:  ese token me da permisos a la ruta de usuarios
-        const loginTokenBackend = JSON.stringify(response.token);
-        localStorage.setItem("loginOrRegisterBackendToken", loginTokenBackend)*/ 
+        const loginTokenBackend = JSON.stringify(response.data.token);
+        localStorage.setItem("loginOrRegisterBackendToken", loginTokenBackend)
+        //USERDATA LOGIN
+        const userDataLogin: any = {name: response.data.name, email: userCredential.user.email}
+        JSON.stringify(userDataLogin)
+        localStorage.setItem("userDataLogin", userDataLogin)
         
         setIsSuccess(true);
         setError(null)
