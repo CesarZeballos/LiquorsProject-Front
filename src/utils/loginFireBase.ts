@@ -2,8 +2,13 @@ const loginUserFireBase = async (formData: any, auth:any, signInWithEmailAndPass
 
   try {
         const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password);
+        //TOKEN LOGIN FIREBASE
         const user = JSON.stringify(userCredential.user.accessToken);
         localStorage.setItem("loginToken", user)
+        //UID LOGIN FIREBASE
+        const userUid = JSON.stringify(userCredential.user.uid)
+        localStorage.setItem("uidLoginFirebase", userUid)
+        
         setIsSuccess(true);
         setError(null)
         setTimeout(() => {
