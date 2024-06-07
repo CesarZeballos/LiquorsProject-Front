@@ -18,10 +18,16 @@ const ProductCard: React.FC<{ product: Product}> = ({product}): React.ReactNode 
     if (category === "Vino") {
       return "border-wine";
     } else if (category === "Gin") {
-      return "border-wine";
+      return "border-gin";
     } else if (category === "Whisky") {
-      return "border-wine";
-    }
+      return "border-whisky";
+    }  else if (category === 'Vodka'){
+      return 'border-blue-500 border-opacity-50'; 
+    } else if (category === 'Ron'){
+      return 'border-ron border-opacity-50'; 
+    }  else if (category === 'Tequila'){
+      return 'border-tequila border-opacity-50'; 
+    } 
     return "";
   };
 
@@ -30,7 +36,7 @@ const ProductCard: React.FC<{ product: Product}> = ({product}): React.ReactNode 
   
   return (
     <div
-      className={`flex flex-col relative bg-white items-center h-96 border-t-8 hover:cursor-pointer rounded-t-xl border-solid border-wine border-t-wine border-2 rounded-lg p-4 m-4 w-48`}>
+      className={`flex flex-col relative bg-white items-center h-96 border-t-8 hover:cursor-pointer rounded-t-xl border-solid ${colorClassDos} ${colorClass} border-2 rounded-lg p-4 m-4 w-48`}>
       <h2 className="text-center text-lg font-Lora mb-2">{product.name}</h2>
       <img
         className="my-2 h-48 w-48 object-cover rounded-md"
