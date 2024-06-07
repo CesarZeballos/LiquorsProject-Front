@@ -73,3 +73,4 @@ export interface IPremium {
   status: string;
   amount: number;
 }
+
