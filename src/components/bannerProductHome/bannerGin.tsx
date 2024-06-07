@@ -1,12 +1,12 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
-import MapProductCard from "../mapProductCard/mapProductCard";
+import MapProductCardGin from "../mapProductCard/mapProductCardGin";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "tailwindcss/tailwind.css";
 import { useSelector } from "react-redux";
 
-const BannerProducts: React.FC = () => {
+const BannerProductsGin: React.FC = () => {
   const scrollContainer = useRef<HTMLDivElement>(null);
   const [currentSection, setCurrentSection] = useState(0);
   const cardsPerPage = 3;
@@ -54,7 +54,7 @@ const BannerProducts: React.FC = () => {
         {/* Contenedor de tarjetas */}
         <div ref={scrollContainer} className="flex overflow-hidden w-full">
           <div className="flex space-x-4 transition-transform duration-500">
-            <MapProductCard />
+            <MapProductCardGin />
           </div>
         </div>
 
@@ -74,4 +74,4 @@ const BannerProducts: React.FC = () => {
   );
 };
 
-export default BannerProducts;
+export default BannerProductsGin;

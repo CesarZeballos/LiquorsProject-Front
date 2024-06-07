@@ -12,25 +12,43 @@ const loginUserFireBaseGoogle = async (auth: any, provider: any, router: any, se
         //UID 
         const userDataUid = JSON.stringify(result.user.uid);
         localStorage.setItem("uidFirebaseGoogleLogin", userDataUid)
-
-        //____________________________________POST LOGIN/REGISTER GOOGLE A BACK END______________________________________
-        const loginObjetGoogle = {
+        //____________________________________POST REGISTER/LOGIN GOOGLE A BACK END______________________________________
+        const registerObjetGoogle = {
             name: result.user.displayName,
             email: result.user.email,
-            firebaseUid: result.user.uid
+            firebaseUid: result.user.uid,
+            provider: result.user.providerData[0].providerId, 
+            //provider: backend valida esta propiedad, si ya existe una cuenta que tenga esta propiedad y el valor de dicha propiedad sea "google.com", 
+            //directamente evita el registro y me manda el token de login.
         }
-        console.log(loginObjetGoogle);
-        const response = await axios.post("https://liquors-project.onrender.com/users/signin", loginObjetGoogle)
+        console.log(registerObjetGoogle);
+        /*const response = await axios.post("https://liquors-project.onrender.com/users/signup", registerObjetGoogle)
         //TOKEN DEVUELTO POR BACKEND, CARGO AL LOCALSTORAGE:  ese token me da permisos a la ruta de usuarios
         const registerTokenBackend = JSON.stringify(response.data.token);
-        localStorage.setItem("loginOrRegisterBackendToken", registerTokenBackend)
+        localStorage.setItem("loginOrRegisterBackendToken", registerTokenBackend)*/
+        /*____________________________________POST LOGIN GOOGLE A BACK END______________________________________
+        const loginObjetGoogleDos = {
+            email: result.user.email,
+            firebaseUid12345678: result.user.uid
+        }
+        const response2 = await axios.post("https://liquors-project.onrender.com/users/signin", loginObjetGoogleDos)
+        //TOKEN DEVUELTO POR BACKEND, CARGO AL LOCALSTORAGE:  ese token me da permisos a la ruta de usuarios
+        const registerTokenBackendGo = JSON.stringify(response2.data.token);
+        localStorage.setItem("loginOrRegisterBackendToken", registerTokenBackendGo)
+        const userDataLogin: any = {
+            name: response2.data.name, 
+            email: result.user.email,
+            id: response2.data.id
+        }
+        console.log(response2);
+        const newData = JSON.stringify(userDataLogin)
+        localStorage.setItem("userDataLogin", newData)*/
         setErrorGoogle(null)
         setIsSuccessGoogle(true);
-        setTimeout(() => {
-            router.push("/")
-        })
-    } catch (error) {
-        setErrorGoogle(error);
+        router.push("/")
+    } catch (error: any) {
+        console.log(error);
+        setErrorGoogle(error.response.data.message);
         setIsSuccessGoogle(false);
     } finally {
         setIsLoadingGoogle(false);
