@@ -9,10 +9,9 @@ import { Login } from "@/interfaces/interfaz";
 //UTILS
 import loginUserFireBase from "@/utils/loginFireBase";
 import loginUserFireBaseGoogle from "@/utils/loginFireBaseGoogle";
-import loginUserFireBaseFacebook from "@/utils/loginFireBaseFacebook";
 //FIREBASE
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 
 const LoginComponent: React.FC = (): React.ReactNode => {
