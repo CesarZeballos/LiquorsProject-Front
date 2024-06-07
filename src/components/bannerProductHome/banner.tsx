@@ -11,7 +11,7 @@ const BannerProducts: React.FC = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const cardsPerPage = 3;
   const dataGlobal = useSelector((state: any) => state.products.data);
-
+  
   // Calcula el número máximo de secciones basado en la cantidad de tarjetas y tarjetas por página.
   const maxSections = Math.ceil(dataGlobal.length / cardsPerPage) - 1;
 
