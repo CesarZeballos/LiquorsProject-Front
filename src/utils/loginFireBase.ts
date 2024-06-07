@@ -19,9 +19,8 @@ const loginUserFireBase = async (formData: any, auth:any, signInWithEmailAndPass
           email: userCredential.user.email,
           firebaseUid12345678: userCredential.user.uid
           }
-          console.log(loginObjet);
         const response = await axios.post("https://liquors-project.onrender.com/users/signin", loginObjet)
-        
+        console.log(response);
         //TOKEN DEVUELTO POR BACKEND, CARGO AL LOCALSTORAGE:  ese token me da permisos a la ruta de usuarios
         const loginTokenBackend = JSON.stringify(response.data.token);
         localStorage.setItem("loginOrRegisterBackendToken", loginTokenBackend)
