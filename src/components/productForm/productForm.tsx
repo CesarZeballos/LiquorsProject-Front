@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { IProductForm, IProductFormErrorProps } from "./types";
 import { usePathname } from "next/navigation";
 import { postProduct } from "@/utils/postProduct";
+import { useSelector } from "react-redux";
 
 const categories = [
     "vino",
@@ -18,23 +19,25 @@ const countries = ["Argentina", "Brazil", "Canada", "France", "Germany", "Italy"
 
 export const ProductForm = () => {
     const pathname = usePathname();
-    const user = useSelector((state: any) => state) 
-    //aca va la logica para traer los datos del usuario
 
-    
     const [dataUser, setDataUser] = useState({
-        id: "1",
-        name: "cesar",
-        email: "cesar@cesar.com"
+        id: "",
+        name: "",
+        email: "",
+        role: ""
     })
 
+    const [token, setToken] = useState({
+        token: ""
+    })
+    
     const userId = dataUser.id
 
     const [dataProduct, setDataProduct] = useState<IProductForm>({
         name: "",
         description: "",
         country: "",
-        brand: dataUser.name,
+        brand: "",
         abv: "",
         imgUrl: "",
         size: "",
@@ -50,21 +53,22 @@ export const ProductForm = () => {
         category: ""
     })
 
+    //logica para traer los datos del usuario
+    useEffect(() => {
+        if( typeof window !== "undefined" && window.localStorage) {
+        const storeData = localStorage.getItem("userDataLogin");
+        const storeToken = localStorage.getItem("loginToken");
+        setToken(JSON.parse(storeToken!));
+        setDataUser(JSON.parse(storeData!));
+        }
+    }, [pathname])
+
     useEffect(() => {
         const storedData = localStorage.getItem("dataProduct");
         if (storedData) {
             setDataProduct(JSON.parse(storedData));
         }
     }, []);
-
-    const putProduct = async (product: any) => {
-        try {
-            postProduct(userId, product)
-        } catch (error) {
-            console.log("error al agregar el producto", error);
-            throw error;
-        }
-    }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = event.target;
@@ -89,14 +93,23 @@ export const ProductForm = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(dataProduct)
 
+        //aca va la logica de la imagen..
+        
+        const updatedDataProduct = {
+            ...dataProduct,
+            brand: String(dataUser.name),
+            size: String(dataProduct.size + "ml"),
+            abv: Number(dataProduct.abv)
+        };
+        
+        console.log(dataUser.id, updatedDataProduct, token.token);
         const errorInput = validateProductForm(dataProduct);
         setErrorProduct(errorInput);
+
         if (Object.keys(errorInput).length === 0) {
             alert(`el producto ${dataProduct.name} ha sido agregado con exito`);
-
-            putProduct(dataProduct);
+            postProduct(dataUser.id, updatedDataProduct, token.token);
         } else {
             alert ("hubo un error al agregar el producto");
         }
@@ -204,6 +217,4 @@ export const ProductForm = () => {
     );
 }
 
-function useSelector(arg0: (state: any) => any) {
-    throw new Error("Function not implemented.");
-}
+
