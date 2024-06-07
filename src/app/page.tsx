@@ -2,12 +2,20 @@ import Carousel from "@/components/carousel/Carousel";
 import BannerProducts from "@/components/bannerProductHome/banner";
 import React from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 import BannerProductsGin from "@/components/bannerProductHome/bannerGin";
+
+
+
 
 export default function Landing() {
   return (
     <div>
       <Carousel></Carousel>
+
+
+
+     
 
       <div className="flex flex-col bg-greyMLfilter scroll-smooth overflow-auto pt-10 items-center">
         {/*SECCION UNO DE TARJETAS (todas las categorias) */}
@@ -22,7 +30,7 @@ export default function Landing() {
         {/*SECCION DOS DE TARJETAS (solo gins) */}
         <div className="w-full bg-black">
           <h1 className="text-center font-plus-jakarta-sans text-2xl mt-6 text-white font-normal mb-4 relative z-10">
-            Only <b className="text-gin">Gin's</b>
+            Only <b className="text-gin">Gins</b>
           </h1>
         </div>
         <ExpandMoreIcon className="flex items-center mt-6" />
