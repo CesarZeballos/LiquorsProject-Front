@@ -128,7 +128,8 @@ const LoginComponent: React.FC = (): React.ReactNode => {
           <button onClick={handleGoogleSignIn} className="rounded-3xl  mb-11 w-3/4 border-2 border-grey3 hover:border-blueGoogle font-plus-jakarta-sans">
             <div className="flex flex-row p-2" >
                 <img className="justify-start" src="https://accounts.scdn.co/sso/images/new-google-icon.72fd940a229bc94cf9484a3320b3dccb.svg"></img>
-                <p className="justify-center pl-5">{isLoadingGoogle ? 'Enviando...' : 'Continuar con Google'}</p>
+                {!errorStateGoogle ? <p className="justify-center pl-5">{isLoadingGoogle ? 'Enviando...' : 'Continuar con Google'}</p> : 
+                <p className="justify-center pl-5">{errorStateGoogle}</p>}
             </div>
           </button>
 
