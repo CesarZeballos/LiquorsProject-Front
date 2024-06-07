@@ -5,7 +5,9 @@ const registerUserFirebase = async (formData: any, auth:any, createUserWithEmail
             //___________________________________________POST REGISTER A FIREBASE_________________________________________
             const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
             //DATA USUARIO REGISTRADO
-            const userFirebase = userCredential.user; //Objeto que contiene información del usuario registrado. (token, mail, etc.)
+            const userFirebase = userCredential.user; //Objeto que contiene información del usuario registrado. (token, mail, etc.
+            const token = JSON.stringify(userFirebase.accessToken)
+            localStorage.setItem("loginToken", token)
             //___________________________________________POST REGISTER A BACK END_________________________________________
             const dataRegisterBack = {
                   name: formData.name, 
@@ -19,12 +21,12 @@ const registerUserFirebase = async (formData: any, auth:any, createUserWithEmail
             setIsSuccess(true);
             setErrors({});
             setTimeout(() => {
-                  router.push("/login")
+                  router.push("/")
             }, 2000);
       } catch (error: any) {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.error('Error en el registro:', errorCode, errorMessage);
+            console.log('Error en el registro:', errorCode, errorMessage);
             console.log(error);
             setErrors({ ...errors, submit: errorMessage }); 
       } finally {
