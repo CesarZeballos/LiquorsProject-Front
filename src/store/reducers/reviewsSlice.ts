@@ -1,26 +1,37 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-interface IReviews {
-  data: string[];
+import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { IReview } from "@/interfaces/interfaz";
+export interface ReviewsStates {
+  data: IReview[];
 }
-const initialState: IReviews = {
+
+const initialState: ReviewsStates = {
   data: [],
 };
+
 const reviewsSlice = createSlice({
   name: "reviews",
   initialState,
   reducers: {
-    createReviews: (state, action: PayloadAction<string>) => {
+    createReviews: (state, action) => {
       state.data.push(action.payload);
     },
     readReviews: (state, action) => {
       state.data = state.data.concat(action.payload);
+    },
+    clearReviews: (state) => {
+      state.data = [];
     },
     updateReviews: (state, action) => {},
     deleteReviews: (state, action) => {},
   },
 });
 
-export const { createReviews, readReviews, updateReviews, deleteReviews } =
-  reviewsSlice.actions;
+export const {
+  createReviews,
+  readReviews,
+  clearReviews,
+  updateReviews,
+  deleteReviews,
+} = reviewsSlice.actions;
 
-export default reviewsSlice;
+export default reviewsSlice.reducer;

@@ -8,7 +8,6 @@ export default function Landing() {
   return (
     <div>
       <Carousel></Carousel>
-      {/*   <ButtonCompra></ButtonCompra> */}
       <div className="flex flex-col bg-greyMLfilter scroll-smooth overflow-auto pt-10 items-center">
         {/*SECCION UNO DE TARJETAS */}
         <h1 className="text-center text-2xl text-black font-plus-jakarta-sans font-normal mb-4">

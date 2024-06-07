@@ -28,11 +28,18 @@ export interface ProductsState {
   data: Product[];
 }
 
+export interface IUser {
+  id: string;
+  name: string;
+  email: string;
+  role: number;
+  firebaseUid: string;
+}
 export interface IReview {
-  id: number;
+  id: string;
   rate: number;
   comment: string;
-  user: string;
+  userId: IUser;
 }
 
 export interface ITeamMember {
@@ -65,7 +72,7 @@ export interface ISuscribe {
   description3: string;
   description4: string;
   price: number;
-  onClick: MouseEventHandler;
+  type: string;
 }
 
 export interface IPremium {
