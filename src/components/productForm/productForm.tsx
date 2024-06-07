@@ -4,6 +4,7 @@ import { validateProductForm } from "@/utils/validateProduct";
 import { useEffect, useState } from "react";
 import { IProductForm, IProductFormErrorProps } from "./types";
 import { usePathname } from "next/navigation";
+import { postProduct } from "@/utils/postProduct";
 
 const categories = [
     "vino",
@@ -17,11 +18,18 @@ const countries = ["Argentina", "Brazil", "Canada", "France", "Germany", "Italy"
 
 export const ProductForm = () => {
     const pathname = usePathname();
+    const user = useSelector((state: any) => state) 
+    //aca va la logica para traer los datos del usuario
+
+    
     const [dataUser, setDataUser] = useState({
-        id: "",
+        id: "1",
         name: "cesar",
-        email: ""
+        email: "cesar@cesar.com"
     })
+
+    const userId = dataUser.id
+
     const [dataProduct, setDataProduct] = useState<IProductForm>({
         name: "",
         description: "",
@@ -51,7 +59,7 @@ export const ProductForm = () => {
 
     const putProduct = async (product: any) => {
         try {
-            // await logica del put
+            postProduct(userId, product)
         } catch (error) {
             console.log("error al agregar el producto", error);
             throw error;
@@ -194,4 +202,8 @@ export const ProductForm = () => {
             <button type="submit" className="but">agregar</button>
         </form>
     );
+}
+
+function useSelector(arg0: (state: any) => any) {
+    throw new Error("Function not implemented.");
 }
