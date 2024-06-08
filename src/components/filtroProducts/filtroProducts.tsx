@@ -42,7 +42,7 @@ const ProductFilterCard: React.FC<ProductFilterCardProps> = ({
           }`}
           onClick={() => handleButtonClick("option1")}
         >
-          wines
+          Whisky
         </button>
         <button
           className={`px-4 py-2 mx-2 font-plus-jakarta-sans bg-white rounded-3xl border border-solid border-wine ${
@@ -52,7 +52,7 @@ const ProductFilterCard: React.FC<ProductFilterCardProps> = ({
           }`}
           onClick={() => handleButtonClick("option2")}
         >
-          gins
+          Gin
         </button>
         <button
           className={`px-4 py-2  font-plus-jakarta-sans bg-white rounded-3xl border border-solid border-wine ${
@@ -62,19 +62,39 @@ const ProductFilterCard: React.FC<ProductFilterCardProps> = ({
           }`}
           onClick={() => handleButtonClick("option3")}
         >
-          liqueur
+          Vodka
+        </button>
+        <button
+          className={`px-4 py-2  font-plus-jakarta-sans bg-white rounded-3xl border border-solid border-wine ${
+            selectedButton === "option3"
+              ? "bg-wine text-white"
+              : "bg-gray-200 text-wine"
+          }`}
+          onClick={() => handleButtonClick("option3")}
+        >
+          Tequila
+        </button>
+        <button
+          className={`px-4 py-2  font-plus-jakarta-sans bg-white rounded-3xl border border-solid border-wine ${
+            selectedButton === "option3"
+              ? "bg-wine text-white"
+              : "bg-gray-200 text-wine"
+          }`}
+          onClick={() => handleButtonClick("option3")}
+        >
+          Ron
         </button>
       </div>
       <hr></hr>
 
       {/*FILTRO POR RANGO PRECIO U OTRA VARIABLE. */}
-      <h1 className="text-lg font-normal pt-3  font-plus-jakarta-sans mb-4">Price range</h1>
+      <h1 className="text-lg font-normal pt-3  font-plus-jakarta-sans mb-4">Abv Range</h1>
       <Slider
         value={priceRange}
         onChange={handleSliderChange}
         valueLabelDisplay="auto"
         min={0}
-        max={100}
+        max={40}
         className="mb-4 "
         sx={{
           color: '#e9e9e9',  // Color principal del slider
