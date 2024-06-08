@@ -38,7 +38,7 @@ export const ProductForm = () => {
         description: "",
         country: "",
         brand: "",
-        abv: "",
+        abv: 0,
         imgUrl: "",
         size: "",
         category: "",

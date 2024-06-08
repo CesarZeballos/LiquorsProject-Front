@@ -17,7 +17,7 @@ export const Logged: React.FC = () => {
     <div>
       <ul className="flex space-x-6">
         <li>
-          <Link className="buttonSecondary" href="/profile/dashboard">
+          <Link className="buttonSecondary" href="/profile">
             <AccountCircleIcon />
             Perfil
           </Link>

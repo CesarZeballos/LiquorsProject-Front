@@ -1,5 +1,10 @@
-const Profile = () => {
-  return <div>page Profile</div>;
+import { DashboardSelector } from "@/components/dashboardSelector/dashboardSelector";
+
+const Profile: React.FC = () => {
+
+  return (
+    <DashboardSelector />
+  )
 };
 
-export default Profile;
+export default Profile; 
