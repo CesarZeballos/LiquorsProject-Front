@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 //material UI
-import StarIcon from "@mui/icons-material/Star";
+import HalfRating from "../ratingStar/ratingstar";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 //interface
 import { Product } from "@/interfaces/interfaz";
@@ -47,10 +47,8 @@ const ProductCard: React.FC<{ product: Product}> = ({product}): React.ReactNode 
       <div className="flex flex-row absolute bottom-4   pl-1 pr-1 left-0 right-0 items-center justify-between w-full mt-2">
         <span className="text-gray-700">4.5</span>
         <div className="flex flex-row justify-center flex-grow mx-2">
-          <StarIcon className="text-gray-300" />
-          <StarIcon className="text-gray-300" />
-          <StarIcon className="text-gray-300" />
-          <StarIcon className="text-gray-300" />
+          <HalfRating />
+        
         </div>
         <FavoriteBorderIcon className="text-wineMasOscuro " />
       </div>
