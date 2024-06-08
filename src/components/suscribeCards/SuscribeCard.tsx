@@ -1,8 +1,41 @@
 "use client";
 import { ISuscribe } from "@/interfaces/interfaz";
-import React from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const SuscribeCard = ({ product }: { product: ISuscribe }) => {
+  const router = useRouter();
+  const [userId, setUserId] = useState<string | null>(null);
+  /*   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null); */
+
+  useEffect(() => {
+    const userDataLogin = localStorage.getItem("userDataLogin");
+    if (userDataLogin) {
+      const userData = JSON.parse(userDataLogin);
+      setUserId(userData.id);
+    }
+  }, []);
+
+  const handlePayment = async () => {
+    try {
+      const response = await axios.post(
+        `https://liquors-project.onrender.com/subscription/${userId}`,
+        {
+          type: product.type,
+          /* le saqué status:"active" porque el back se acutalizó, pero el deploy aún no */
+          amount: product.price,
+        }
+      );
+      console.log(response);
+      router.push(response.data.init_point);
+    } catch (error) {
+      console.error("Error during subscription:", error);
+    }
+  };
+
   return (
     <div className="max-w-sm w-full bg-white rounded-xl shadow-2xl overflow-hidden my-4 bg-opacity-85">
       <div className="p-8">
@@ -24,9 +57,9 @@ const SuscribeCard = ({ product }: { product: ISuscribe }) => {
           <div className="align-center">
             <button
               className="mt-4 px-6 py-2 bg-wine text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-75 transition duration-200"
-              onClick={product.onClick}
+              onClick={handlePayment}
             >
-              Suscribirse Ahora
+              Suscribirse
             </button>
           </div>
         </div>
