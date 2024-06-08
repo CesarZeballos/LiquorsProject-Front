@@ -22,10 +22,18 @@ const loginUserFireBaseGoogle = async (auth: any, provider: any, router: any, se
             //directamente evita el registro y me manda el token de login.
         }
         console.log(registerObjetGoogle);
-        /*const response = await axios.post("https://liquors-project.onrender.com/users/signup", registerObjetGoogle)
+        const response = await axios.post("https://liquors-project.onrender.com/users/signup", registerObjetGoogle)
         //TOKEN DEVUELTO POR BACKEND, CARGO AL LOCALSTORAGE:  ese token me da permisos a la ruta de usuarios
         const registerTokenBackend = JSON.stringify(response.data.token);
-        localStorage.setItem("loginOrRegisterBackendToken", registerTokenBackend)*/
+        localStorage.setItem("loginOrRegisterBackendToken", registerTokenBackend)
+        const userDataLogin: any = {
+            name: response.data.name, 
+            email: result.user.email,
+            id: response.data.id,
+            rol: response.data.rol
+          }
+        const newData = JSON.stringify(userDataLogin)
+        localStorage.setItem("userDataLogin", newData)
         /*____________________________________POST LOGIN GOOGLE A BACK END______________________________________
         const loginObjetGoogleDos = {
             email: result.user.email,

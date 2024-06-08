@@ -28,7 +28,8 @@ const loginUserFireBase = async (formData: any, auth:any, signInWithEmailAndPass
         const userDataLogin: any = {
           name: response.data.name, 
           email: userCredential.user.email,
-          id: response.data.id
+          id: response.data.id,
+          rol: response.data.role
         }
         const newData = JSON.stringify(userDataLogin)
         localStorage.setItem("userDataLogin", newData)
