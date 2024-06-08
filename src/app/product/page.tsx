@@ -1,7 +1,7 @@
 "use client";
 import ProductFilterCard from "@/components/filtroProducts/filtroProducts";
 import MapProductCard from "@/components/mapProductCard/mapProductCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const Product: React.FC = (): React.ReactNode => {
@@ -12,9 +12,15 @@ const Product: React.FC = (): React.ReactNode => {
   const [search, setSearch] = useState({item: ''});
 
   //TOKEN DE USUARIO PREMIUN O CONVENCIONAL
-  const [hasToken, setHasToken] = useState<boolean>(true); // Cambia esto según tu lógica de autenticación
+  const [hasToken, setHasToken] = useState<number>(); // Cambia esto según tu lógica de autenticación
   //ESTADO PARA OCULTAR O MOSTRAR FILTRO.
   const [isFilterVisible, setIsFilterVisible] = useState<boolean>(false);
+
+  useEffect(() => {
+    const newData: any = localStorage.getItem("userDataLogin")
+    const rol = JSON.parse(newData)
+    setHasToken(rol)
+  }, [])
 
   const router = useRouter()
 
@@ -45,7 +51,7 @@ const Product: React.FC = (): React.ReactNode => {
 
   //HANDLER PARA BOTON QUE OCULTA/MUESTRA
   const toggleFilterVisibility = () => {
-    if (hasToken) {
+    if (hasToken === 4) {
       setIsFilterVisible(!isFilterVisible);
     } else {
       alert("Debe suscribirse a cuenta premium");
