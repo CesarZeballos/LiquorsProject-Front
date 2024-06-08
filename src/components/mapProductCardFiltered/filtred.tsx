@@ -4,7 +4,6 @@
 import React, {useEffect, useState} from "react";
 import ProductCard from "../productCard/productCard";
 import { useSelector } from "react-redux";
-import {Product, ProductFiltered } from "@/interfaces/interfaz";
 
 const MapProductCardFiltered = () => {
   const dataGlobal = useSelector((state: any) => state.products.data);

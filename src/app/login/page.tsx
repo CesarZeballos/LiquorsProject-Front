@@ -17,6 +17,7 @@ import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopu
 const LoginComponent: React.FC = (): React.ReactNode => {
   //ESTADOS
   const [formData, setFormData] = useState<Login>({
+    name: '',
     email: '',
     password: '',
   });
@@ -74,6 +75,16 @@ const LoginComponent: React.FC = (): React.ReactNode => {
 
         <div className="rounded border bg-white border-wine">
           <form className="justify-end w-96  bg-white p-12" onSubmit={handleSubmit}>
+          <div className="pb-2">
+              <input
+                className="w-full p-3 rounded border border-gray-400 outline-none hover:border-wine hover:ring-1 hover:ring-wine focus:border-wine focus:ring-2 focus:ring-wine transition duration-200"
+                type="text"
+                value={formData.name}
+                name="name"
+                placeholder="Nombre"
+                onChange={handleChange}
+              />
+            </div>
             <div className="pb-2">
               <input
                 className="w-full p-3 rounded border border-gray-400 outline-none hover:border-wine hover:ring-1 hover:ring-wine focus:border-wine focus:ring-2 focus:ring-wine transition duration-200"
@@ -128,7 +139,8 @@ const LoginComponent: React.FC = (): React.ReactNode => {
           <button onClick={handleGoogleSignIn} className="rounded-3xl  mb-11 w-3/4 border-2 border-grey3 hover:border-blueGoogle font-plus-jakarta-sans">
             <div className="flex flex-row p-2" >
                 <img className="justify-start" src="https://accounts.scdn.co/sso/images/new-google-icon.72fd940a229bc94cf9484a3320b3dccb.svg"></img>
-                <p className="justify-center pl-5">{isLoadingGoogle ? 'Enviando...' : 'Continuar con Google'}</p>
+                {!errorStateGoogle ? <p className="justify-center pl-5">{isLoadingGoogle ? 'Enviando...' : 'Continuar con Google'}</p> : 
+                <p className="justify-center pl-5">{errorStateGoogle}</p>}
             </div>
           </button>
 

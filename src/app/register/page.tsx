@@ -10,9 +10,10 @@ import { Register} from "@/interfaces/interfaz";
 import validate from "@/utils/validate";
 //FUNCION REGISTRO FIREBASE
 import registerUserFirebase from "@/utils/registerFirebase";
+import loginUserFireBaseGoogle from "@/utils/loginFireBaseGoogle";
 //FIREBASE CONFIGS
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 
 const RegisterComponent: React.FC = (): React.ReactNode => {
@@ -37,9 +38,15 @@ const RegisterComponent: React.FC = (): React.ReactNode => {
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
-  
-  
+  const provider = new GoogleAuthProvider();
+
   const router = useRouter();
+
+   //estados locales de login con google (aun sin uso)
+   const [errorStateGoogle, setErrorGoogle] = useState(null);
+   const [isSuccessGoogle, setIsSuccessGoogle] = useState(false);
+   const [isLoadingGoogle, setIsLoadingGoogle] = useState(false);
+ 
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -63,6 +70,12 @@ const RegisterComponent: React.FC = (): React.ReactNode => {
     registerUserFirebase(formData, auth, createUserWithEmailAndPassword, setIsSuccess, setErrors, router, errors, setIsLoading, setToken )
     }
 
+  //EVENT HANDLER ENVIO DE FORMULARIO CON GOOGLE
+  const handleGoogleSignIn = async () => {
+    setIsLoadingGoogle(true)
+    loginUserFireBaseGoogle(auth, provider, router, setErrorGoogle, setIsLoadingGoogle, setIsSuccessGoogle, signInWithPopup)
+  }
+  
 
   return (
     <div className="flex justify-center items-center text-center pt-32 pb-32 bg-greyVivino">
@@ -112,7 +125,7 @@ const RegisterComponent: React.FC = (): React.ReactNode => {
             </div>
             
             
-            <div className="inline-block pb-8 pt-5">
+            <div className="inline-block pb-5 pt-5">
               ¿Ya estas registrado? <br/><br/>
               <Link href='/login'>
                 <span className="text-black hover:text-yellow-400 transition-colors duration-100">Iniciar Sesion</span>
@@ -120,7 +133,7 @@ const RegisterComponent: React.FC = (): React.ReactNode => {
             </div>
 
 
-            <div className="text-center">
+            <div className="text-center ">
               <button
                 className={`inline-block mt-7 cursor-pointer w-full max-w-full p-3 rounded-lg ${
                   !(formData.email.trim() && formData.password.trim()) || Object.values(errors).some((error) => !!error)
@@ -138,7 +151,21 @@ const RegisterComponent: React.FC = (): React.ReactNode => {
               </button>
             </div>
             {isSuccess && <span className="inline-block mt-2 rounded bg-green-500 text-white p-2">¡Registro exitoso!</span>}
-           {!isSuccess && errors.submit && <span className="inline-block cursor-pointer w-1/5 rounded bg-red-500 text-white p-2 mt-2">{errors.submit}</span>}
+           {!isSuccess && errors.submit && <span className="inline-block   w-1/2 rounded bg-red-500 text-white p-2 mt-2">{errors.submit}</span>}
+
+            <div className="flex mt-10 bg-white mb-10 px-1 flex-row items-center">
+              <hr className="w-9/12 border-gray-400"></hr>
+              <p className="mx-4">o</p>
+              <hr className="w-9/12 border-gray-400"></hr>
+            </div>   
+            
+            <button onClick={handleGoogleSignIn} className="rounded-3xl  mb-11 px-0 w-full border-2 border-grey3 hover:border-blueGoogle font-plus-jakarta-sans">
+              <div className="flex flex-row p-2" >
+                  <img className="justify-start" src="https://accounts.scdn.co/sso/images/new-google-icon.72fd940a229bc94cf9484a3320b3dccb.svg"></img>
+                  {!errorStateGoogle ? <p className="justify-center text-base pl-5">{isLoadingGoogle ? 'Enviando...' : 'Continuar con Google'}</p> : 
+                  <p className="justify-center pl-5">{errorStateGoogle}</p>}
+              </div>
+            </button>
           </form>
         </div>      
     </div>
