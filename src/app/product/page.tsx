@@ -1,26 +1,38 @@
 "use client";
 import ProductFilterCard from "@/components/filtroProducts/filtroProducts";
 import MapProductCard from "@/components/mapProductCard/mapProductCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { fetchProductsFiltered } from "@/utils/getProductsFiltered";
+import { useDispatch } from "react-redux";
 
 const Product: React.FC = (): React.ReactNode => {
-  
+
+  const dispatch = useDispatch();
+
   //aqui guardaria los valores de los filtros
   const [filters, setFilters] = useState<any>({});
+  console.log(filters);
+  
   //valors de barra de busqueda
   const [search, setSearch] = useState({item: ''});
 
-  //TOKEN DE USUARIO PREMIUN O CONVENCIONAL
-  const [hasToken, setHasToken] = useState<boolean>(true); // Cambia esto según tu lógica de autenticación
+  //ROL DE USUARIO PREMIUN O CONVENCIONAL
+  const [hasRol, setHasRol] = useState<number>(); // Cambia esto según tu lógica de autenticación
   //ESTADO PARA OCULTAR O MOSTRAR FILTRO.
-  const [isFilterVisible, setIsFilterVisible] = useState<boolean>(false);
+  const [isFilterVisible, setIsFilterVisible] = useState<boolean>(true);
+
+  useEffect(() => {
+    const newData: any = localStorage.getItem("userDataLogin")
+    const rol = JSON.parse(newData)
+    setHasRol(rol)
+  }, [])
 
   const router = useRouter()
 
   const handleFilterChange = (newFilters: any) => {
     setFilters(newFilters);
-    //Aquí se maneja la lógica de filtrado de productos usando los filtros actualizados.
+    fetchProductsFiltered(filters, dispatch)
   };
 
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +57,7 @@ const Product: React.FC = (): React.ReactNode => {
 
   //HANDLER PARA BOTON QUE OCULTA/MUESTRA
   const toggleFilterVisibility = () => {
-    if (hasToken) {
+    if (hasRol === 4) {
       setIsFilterVisible(!isFilterVisible);
     } else {
       alert("Debe suscribirse a cuenta premium");

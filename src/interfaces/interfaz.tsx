@@ -27,6 +27,8 @@ export interface Product {
 
 export interface ProductsState {
   data: Product[];
+  ginProducts: Product[];
+  wineProducts: Product[];
 }
 
 export interface IUser {

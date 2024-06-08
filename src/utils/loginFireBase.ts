@@ -5,7 +5,6 @@ const loginUserFireBase = async (formData: any, auth:any, signInWithEmailAndPass
   try {
         //___________________________________________POST LOGIN A FIREBASE_________________________________________
         const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password);
-        console.log("data de login", userCredential.user);
         //TOKEN LOGIN FIREBASE, CARGO AL LOCALSTORAGE
         const user = JSON.stringify(userCredential.user.accessToken);
         localStorage.setItem("loginToken", user)
@@ -19,8 +18,6 @@ const loginUserFireBase = async (formData: any, auth:any, signInWithEmailAndPass
           firebaseUid: userCredential.user.uid
           }
         const response = await axios.post("https://liquors-project.onrender.com/users/signin", loginObjet)
-        console.log("respuesta back a login", response);
-        console.log("respuesta firebase a login",  userCredential);
         //USERDATA LOGIN
         const userDataLogin: any = {
           name: formData.name, 

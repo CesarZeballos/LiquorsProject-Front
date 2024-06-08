@@ -4,10 +4,10 @@ import { readGinProducts } from "@/store/reducers/productsSlice";
 import { clearGinProducts } from "@/store/reducers/productsSlice";
 import { Product } from "@/interfaces/interfaz";
 
-export const fetchProductsGin = async (dispatch: AppDispatch) => {
+export const fetchProductsFiltered = async (dispatch: AppDispatch, filters: any) => {
   try {
-      const res = await axios.get<Product[]>("https://liquors-project.onrender.com/products/?category=Gin");
-      //deberia hacer un estado global nuevo solo para products/gins.
+        //ver como pasar valores de filters por query
+      const res = await axios.get<Product[]>(`https://liquors-project.onrender.com/products/?category=Gin&rate=3.5&type=wine`);
       dispatch(clearGinProducts());
       dispatch(readGinProducts(res.data));
   } catch (err) {
