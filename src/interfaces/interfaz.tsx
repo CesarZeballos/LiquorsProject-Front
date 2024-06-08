@@ -1,6 +1,7 @@
 import { MouseEventHandler } from "react";
 
 export interface Login {
+  name: string,
   email: string;
   password: string;
 }

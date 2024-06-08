@@ -17,6 +17,7 @@ import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopu
 const LoginComponent: React.FC = (): React.ReactNode => {
   //ESTADOS
   const [formData, setFormData] = useState<Login>({
+    name: '',
     email: '',
     password: '',
   });
@@ -74,6 +75,16 @@ const LoginComponent: React.FC = (): React.ReactNode => {
 
         <div className="rounded border bg-white border-wine">
           <form className="justify-end w-96  bg-white p-12" onSubmit={handleSubmit}>
+          <div className="pb-2">
+              <input
+                className="w-full p-3 rounded border border-gray-400 outline-none hover:border-wine hover:ring-1 hover:ring-wine focus:border-wine focus:ring-2 focus:ring-wine transition duration-200"
+                type="text"
+                value={formData.name}
+                name="name"
+                placeholder="Nombre"
+                onChange={handleChange}
+              />
+            </div>
             <div className="pb-2">
               <input
                 className="w-full p-3 rounded border border-gray-400 outline-none hover:border-wine hover:ring-1 hover:ring-wine focus:border-wine focus:ring-2 focus:ring-wine transition duration-200"

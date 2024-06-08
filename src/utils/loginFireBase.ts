@@ -13,27 +13,24 @@ const loginUserFireBase = async (formData: any, auth:any, signInWithEmailAndPass
         const userUid = userCredential.user.uid
         JSON.stringify(userUid)
         localStorage.setItem("uidLoginFirebase", userUid)
-
         //__________________________________________POST LOGIN A BACK END_________________________________________
         const loginObjet = {
           email: userCredential.user.email,
-          firebaseUid12345678: userCredential.user.uid
+          firebaseUid: userCredential.user.uid
           }
         const response = await axios.post("https://liquors-project.onrender.com/users/signin", loginObjet)
-        console.log(response);
-        //TOKEN DEVUELTO POR BACKEND, CARGO AL LOCALSTORAGE:  ese token me da permisos a la ruta de usuarios
-        const loginTokenBackend = JSON.stringify(response.data.token);
-        localStorage.setItem("loginOrRegisterBackendToken", loginTokenBackend)
+        console.log("respuesta back a login", response);
+        console.log("respuesta firebase a login",  userCredential);
         //USERDATA LOGIN
         const userDataLogin: any = {
-          name: response.data.name, 
+          name: formData.name, 
           email: userCredential.user.email,
           id: response.data.id,
-          rol: response.data.role
+          role: response.data.role,
+          token: response.data.token
         }
         const newData = JSON.stringify(userDataLogin)
         localStorage.setItem("userDataLogin", newData)
-        //comentario
         setIsSuccess(true);
         setError(null)
         setTimeout(() => {
