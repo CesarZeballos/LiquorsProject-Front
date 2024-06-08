@@ -1,21 +1,31 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { deleteReview } from "@/utils/getReviews";
-import { removeReview } from "@/store/reducers/reviewsSlice"; // Acción de Redux para eliminar la review del estado
+"use client";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchReviews } from "@/utils/getReviews";
+
 import { IReview } from "@/interfaces/interfaz";
 import StarIcon from "@mui/icons-material/Star";
-import DeleteIcon from "@mui/icons-material/Delete"; // Importa un ícono para el botón de eliminar
+import DeleteIcon from "@mui/icons-material/Delete";
+import { RootState } from "@/store/store";
+import { deleteReview } from "@/utils/deleteReviews";
 
 export const Review = ({ review }: { review: IReview }) => {
+  const dataReviews: IReview[] = useSelector(
+    (state: RootState) => state.reviews.data
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetchReviews(dispatch);
+    console.log("dataReviews", dataReviews);
+  }, [dispatch]);
   const { id, rate, comment, userId } = review; /* datos de la review */
   const { name } = userId; /* datos del usuario que hizo la review */
-  const dispatch = useDispatch();
 
   const handleDelete = async (id: string) => {
     if (confirm("¿Estás seguro de que quieres eliminar esta review?")) {
       try {
-        await deleteReview(id); // Llama a la función para eliminar la review del servidor
-        dispatch(removeReview(id)); // Actualiza el estado global para eliminar la review
+        await deleteReview(id, dispatch);
         alert("Review eliminada con éxito.");
       } catch (error) {
         console.error("Error eliminando la review:", error);
