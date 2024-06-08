@@ -26,7 +26,6 @@ export default function Landing() {
         <div className="flex space-x-4">
           <BannerProducts />
         </div>
-
         {/*SECCION DOS DE TARJETAS (solo gins) */}
         <div className="w-full bg-black">
           <h1 className="text-center font-plus-jakarta-sans text-2xl mt-6 text-white font-normal mb-4 relative z-10">

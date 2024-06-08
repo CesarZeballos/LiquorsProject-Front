@@ -1,5 +1,4 @@
 import axios from "axios";
-import firebase from "firebase/compat/app";
 
 const loginUserFireBaseGoogle = async (auth: any, provider: any, router: any, setErrorGoogle:any, setIsLoadingGoogle: any, setIsSuccessGoogle: any, signInWithPopup: any) => {
     try {
@@ -22,32 +21,27 @@ const loginUserFireBaseGoogle = async (auth: any, provider: any, router: any, se
             //directamente evita el registro y me manda el token de login.
         }
         console.log(registerObjetGoogle);
-        /*const response = await axios.post("https://liquors-project.onrender.com/users/signup", registerObjetGoogle)
-        //TOKEN DEVUELTO POR BACKEND, CARGO AL LOCALSTORAGE:  ese token me da permisos a la ruta de usuarios
-        const registerTokenBackend = JSON.stringify(response.data.token);
-        localStorage.setItem("loginOrRegisterBackendToken", registerTokenBackend)*/
-        /*____________________________________POST LOGIN GOOGLE A BACK END______________________________________
-        const loginObjetGoogleDos = {
-            email: result.user.email,
-            firebaseUid12345678: result.user.uid
-        }
-        const response2 = await axios.post("https://liquors-project.onrender.com/users/signin", loginObjetGoogleDos)
-        //TOKEN DEVUELTO POR BACKEND, CARGO AL LOCALSTORAGE:  ese token me da permisos a la ruta de usuarios
-        const registerTokenBackendGo = JSON.stringify(response2.data.token);
-        localStorage.setItem("loginOrRegisterBackendToken", registerTokenBackendGo)
+        const response = await axios.post("https://liquors-project.onrender.com/users/signup", registerObjetGoogle)
+        console.log(response);
+        //USER DATA LOGIN/REGISTER GOOGLE
+        console.log("respuesta back login google", response);
+        console.log("respuesta firebase a login google", result);
         const userDataLogin: any = {
-            name: response2.data.name, 
+            name: result.user.displayName,
             email: result.user.email,
-            id: response2.data.id
+            id: response.data.id,
+            rol: response.data.rol,
+            token: response.data.token
         }
-        console.log(response2);
+        console.log(userDataLogin);
+        
         const newData = JSON.stringify(userDataLogin)
-        localStorage.setItem("userDataLogin", newData)*/
+        localStorage.setItem("userDataLogin", newData)
         setErrorGoogle(null)
         setIsSuccessGoogle(true);
         router.push("/")
     } catch (error: any) {
-        console.log(error);
+        console.log("error firebase google login", error);
         setErrorGoogle(error.response.data.message);
         setIsSuccessGoogle(false);
     } finally {
