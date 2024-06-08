@@ -2,6 +2,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 //icons
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from '@mui/icons-material/Logout';
+
 
 export const Logged: React.FC = () => {
   const router = useRouter();
@@ -28,7 +30,8 @@ export const Logged: React.FC = () => {
             className="buttonSecondary"
             style={{ cursor: "pointer" }}
           >
-            Logout
+            <LogoutIcon></LogoutIcon>
+            Log Out
           </span>
         </li>
       </ul>
