@@ -7,10 +7,10 @@ import { IReview } from "@/interfaces/interfaz";
 export const fetchReviews = async (dispatch: AppDispatch) => {
   const detailProduct = localStorage.getItem("detailProduct");
   const idProduct = JSON.parse(detailProduct!);
-  const id = idProduct.id;
+  const idP = idProduct.id;
   try {
     const res = await axios.get<IReview[] | any>(
-      `https://liquors-project.onrender.com/reviews/product/${id}`
+      `https://liquors-project.onrender.com/reviews/product/${idP}`
     );
     dispatch(clearReviews());
     dispatch(readReviews(res.data));
