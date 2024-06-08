@@ -4,7 +4,6 @@
 import React, {useEffect, useState} from "react";
 import ProductCard from "../productCard/productCard";
 import { fetchProductsGin } from "@/utils/getProductsGin";
-import { fetchProducts } from "@/utils/getProducts";
 import { useDispatch} from "react-redux";
 import { useSelector } from "react-redux";
 import Link from "next/link";
@@ -14,25 +13,22 @@ export const MapProductCardGin: React.FC = (): React.ReactNode => {
 
  //defino useDispatch para pasarlo como argumento a fetchProducts
  const dispatch = useDispatch()
- const dataGlobal = useSelector((state: any) => state.products.data)
-
- //const [dataGlobalLocal, setDataGlobalLocal] = useState()
-
- console.log(dataGlobal);
+ const ginProducts = useSelector((state: any) => state.products.ginProducts);
+ console.log(ginProducts);
+ 
 
   //GET PRODUCTS A LA API + CARGA DE DATOS EN LA STORE.
   useEffect(() => {
-    if (dataGlobal.length === 0) {
-      fetchProducts(dispatch);
+    if (ginProducts.length === 0) {
+      fetchProductsGin(dispatch);
     }
-  }, [dispatch, dataGlobal.length]);
+  }, [dispatch, ginProducts.length]);
 
  const detailProduct = (product: Product) => {
   const data = JSON.stringify(product)
   localStorage.setItem("detailProduct", data)
  }
- //luego eliminar este filtrado y usar directamente el filtro del back.
- const ginProducts = dataGlobal.filter((product: any) => product.category.toLowerCase() === "gin");
+
 
   //RENDERIZO UNA CARD POR CADA ELEMENTO DE LA STORE.
   return (
