@@ -1,23 +1,22 @@
-
-'use client'
+"use client";
 //react
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import ProductCard from "../productCard/productCard";
 import { fetchProducts } from "@/utils/getProducts";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import { Product } from "@/interfaces/interfaz";
+import { RootState } from "@/store/store";
 
 export const MapProductCard: React.FC = (): React.ReactNode => {
+  //defino useDispatch para pasarlo como argumento a fetchProducts
+  const dispatch = useDispatch();
+  const dataGlobal = useSelector((state: RootState) => state.products.data);
 
- //defino useDispatch para pasarlo como argumento a fetchProducts
- const dispatch = useDispatch()
- const dataGlobal = useSelector((state: any) => state.products.data)
+  //const [dataGlobalLocal, setDataGlobalLocal] = useState()
 
- //const [dataGlobalLocal, setDataGlobalLocal] = useState()
-
- console.log(dataGlobal);
+  console.log(dataGlobal);
 
   //GET PRODUCTS A LA API + CARGA DE DATOS EN LA STORE.
   useEffect(() => {
@@ -26,24 +25,24 @@ export const MapProductCard: React.FC = (): React.ReactNode => {
     }
   }, [dispatch, dataGlobal.length]);
 
- const detailProduct = (product: Product) => {
-  const data = JSON.stringify(product)
-  localStorage.setItem("detailProduct", data)
- }
+  const detailProduct = (product: Product) => {
+    const data = JSON.stringify(product);
+    localStorage.setItem("detailProduct", data);
+  };
 
   //RENDERIZO UNA CARD POR CADA ELEMENTO DE LA STORE.
   return (
-      <>
-          {/*Mapea el arreglo de productos y renderiza un Card para cada uno*/}
-            {dataGlobal.map((product:any) => (
-              <Link key={product.id} href={`/product/${product.name}`}>
-                <p   onClick={() => detailProduct(product)}>
-                  <ProductCard key={product.id} product={product} />
-                </p>
-              </Link>
-            ))}
-      </>
+    <>
+      {/*Mapea el arreglo de productos y renderiza un Card para cada uno*/}
+      {dataGlobal.map((product: Product) => (
+        <Link key={product.id} href={`/product/${product.name}`}>
+          <p onClick={() => detailProduct(product)}>
+            <ProductCard key={product.id} product={product} />
+          </p>
+        </Link>
+      ))}
+    </>
   );
 };
 
-export default  MapProductCard;
+export default MapProductCard;

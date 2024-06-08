@@ -1,10 +1,5 @@
-import { IPremium, ISuscribe } from "@/interfaces/interfaz";
+import { ISuscribe } from "@/interfaces/interfaz";
 
-export const suscribePremium: IPremium = {
-  type: "premium",
-  status: "active",
-  amount: 100,
-};
 export const arraySuscribe: ISuscribe[] = [
   {
     title: "Plan Premium",
@@ -12,10 +7,8 @@ export const arraySuscribe: ISuscribe[] = [
     description2: "Acceso a newsletters mensuales.",
     description3: `Podrás obtenes la "Caja de mes", con el artículo favorito del mes`,
     description4: "Descuentos en eventos.",
-    price: 4.99,
-    onClick: () => {
-      alert("Evento Premium");
-    },
+    price: 100,
+    type: "premium",
   },
 
   {
@@ -24,9 +17,7 @@ export const arraySuscribe: ISuscribe[] = [
     description2: "Puedes publicar productos",
     description3: "Puedes hacer otras cosas we",
     description4: "Descripción mágica que no se me ocurre",
-    price: 14.99,
-    onClick: () => {
-      alert("evento Empresa c:");
-    },
+    price: 200,
+    type: "enterprise",
   },
 ];
