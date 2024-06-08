@@ -1,24 +1,15 @@
 "use client";
 import { IReview } from "@/interfaces/interfaz";
-import { AppDispatch } from "@/store/store";
+import { AppDispatch, RootState } from "@/store/store";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { clearReviews, readReviews } from "@/store/reducers/reviewsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { readReviews } from "@/store/reducers/reviewsSlice";
 /* estilos */
-import { styled } from "@mui/material/styles";
 import Rating from "@mui/material/Rating";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import Stack from "@mui/material/Stack";
+import { styled } from "@mui/material/styles";
 
 import axios from "axios";
-const StyledRating = styled(Rating)({
-  "& .MuiRating-iconFilled": {
-    color: "#ff6d75",
-  },
-  "& .MuiRating-iconHover": {
-    color: "#E94637",
-  },
-});
 
 export const ReviewForm = () => {
   const [formData, setFormData] = useState({
@@ -26,10 +17,12 @@ export const ReviewForm = () => {
     rate: 0,
   });
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+
   const clearInput = () => {
     setFormData({ comment: "", rate: 0 });
   };
+
   const handlerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -42,10 +35,7 @@ export const ReviewForm = () => {
     setFormData({ ...formData, rate: value ?? 0 });
   };
 
-  const postReviews = async (
-    dispatch: AppDispatch,
-    formData: { comment: string; rate: number }
-  ) => {
+  const postReviews = async (formData: { comment: string; rate: number }) => {
     const detailProduct = localStorage.getItem("detailProduct");
     const detailUser = localStorage.getItem("userDataLogin");
     if (detailProduct && detailUser) {
@@ -58,7 +48,6 @@ export const ReviewForm = () => {
           `https://liquors-project.onrender.com/reviews/?userId=${idU}&productId=${idP}`,
           formData
         );
-        dispatch(clearReviews());
         dispatch(readReviews(res.data));
         clearInput();
       } catch (err) {
@@ -69,7 +58,7 @@ export const ReviewForm = () => {
 
   const handlerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    postReviews(dispatch, formData);
+    postReviews(formData);
   };
 
   return (
@@ -85,19 +74,18 @@ export const ReviewForm = () => {
           placeholder="Publica aquí tu Review"
           onChange={handlerChange}
         />
-
-        <StyledRating
-          name="rate"
-          value={formData.rate}
-          defaultValue={0}
-          getLabelText={(value: number) =>
-            `${value} Heart${value !== 1 ? "s" : ""}`
-          }
-          precision={0.5}
-          icon={<FavoriteIcon fontSize="inherit" />}
-          emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
-          onChange={handleRatingChange}
-        />
+        <Stack spacing={1}>
+          <Rating
+            name="rate"
+            value={formData.rate}
+            defaultValue={0}
+            getLabelText={(value: number) =>
+              `${value} Heart${value !== 1 ? "s" : ""}`
+            }
+            precision={0.5}
+            onChange={handleRatingChange}
+          />
+        </Stack>
 
         <button type="submit" className="buttonPrimary w-fit">
           Postear opinión

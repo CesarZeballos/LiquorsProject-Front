@@ -18,3 +18,22 @@ export const fetchReviews = async (dispatch: AppDispatch) => {
     console.error(err);
   }
 };
+
+export const deleteReview = async (reviewId: string) => {
+  const detailProduct = localStorage.getItem("detailProduct");
+  const userDataLogin = localStorage.getItem("userDataLogin");
+  if (detailProduct && userDataLogin) {
+    const idProduct = JSON.parse(detailProduct);
+    const idUser = JSON.parse(userDataLogin);
+    const idP = idProduct.id;
+    const idU = idUser.id;
+    const url = `https://liquors-project.onrender.com/reviews/${reviewId}?userId=${idU}&productId=${idP}`;
+
+    try {
+      const response = await axios.delete(url);
+      return response.data;
+    } catch (error) {
+      throw new Error("Error eliminando la review");
+    }
+  }
+};
