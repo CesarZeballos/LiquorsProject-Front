@@ -1,14 +1,11 @@
 "use client";
 import { IReview } from "@/interfaces/interfaz";
-import { AppDispatch, RootState } from "@/store/store";
+import { AppDispatch } from "@/store/store";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { readReviews } from "@/store/reducers/reviewsSlice";
-/* estilos */
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
-
 import axios from "axios";
 
 export const ReviewForm = () => {
@@ -62,9 +59,9 @@ export const ReviewForm = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-black">
-        Queremos conocer tu opinión de este producto!
+    <div className="max-w-md mx-auto bg-white p-8 rounded-xl shadow-md  ">
+      <h1 className="text-2xl font-bold text-gray-800 mb-4">
+        ¡Queremos conocer tu opinión sobre este producto!
       </h1>
       <form className="flex flex-col gap-4" onSubmit={handlerSubmit}>
         <input
@@ -73,6 +70,7 @@ export const ReviewForm = () => {
           name="comment"
           placeholder="Publica aquí tu Review"
           onChange={handlerChange}
+          className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wine"
         />
         <Stack spacing={1}>
           <Rating
@@ -80,14 +78,18 @@ export const ReviewForm = () => {
             value={formData.rate}
             defaultValue={0}
             getLabelText={(value: number) =>
-              `${value} Heart${value !== 1 ? "s" : ""}`
+              `${value} Star${value !== 1 ? "s" : ""}`
             }
             precision={0.5}
             onChange={handleRatingChange}
+            className="text-yellow-400"
           />
         </Stack>
 
-        <button type="submit" className="buttonPrimary w-fit">
+        <button
+          type="submit"
+          className="bg-wine text-white py-2 px-4 rounded-md  hover:bg-red-700 transition-colors"
+        >
           Postear opinión
         </button>
       </form>
