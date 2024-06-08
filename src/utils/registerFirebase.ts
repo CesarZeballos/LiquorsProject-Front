@@ -16,7 +16,6 @@ const registerUserFirebase = async (formData: any, auth:any, createUserWithEmail
                   provider: null
             }
             const response = await axios.post("https://liquors-project.onrender.com/users/signup", dataRegisterBack )
-            console.log("respuesta back a register", response);
             //DATA CARGADA AL LOCALSTORAGE (token, id)
             const dataRegisterBackLog = {
                   name: formData.name, 
