@@ -1,10 +1,10 @@
 import axios from "axios";
 import { AppDispatch } from "@/store/store";
-import { IProductForm } from "@/components/productForm/types";
+import { IProductUpdatedData } from "@/components/productForm/types";
 
-export const postProduct = async (userId: string, dataProduct: IProductForm, token: string) => {
+export const postProduct = async (userId: string, dataProduct: IProductUpdatedData, token: string) => {
   try {
-      const response = await axios.post<IProductForm>(
+      const response = await axios.post<IProductUpdatedData>(
         `https://liquors-project.onrender.com/products/${userId}`, 
       dataProduct,
     {
@@ -13,7 +13,6 @@ export const postProduct = async (userId: string, dataProduct: IProductForm, tok
     }
   }
 );
-console.log(response.data);
 return response.data;
 
   } catch (err) {
