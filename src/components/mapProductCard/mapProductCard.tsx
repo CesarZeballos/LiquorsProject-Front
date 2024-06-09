@@ -2,7 +2,7 @@
 //react
 import React, { useEffect, useState } from "react";
 import ProductCard from "../productCard/productCard";
-import { fetchProducts } from "@/utils/getProducts";
+import { fetchProductsHome } from "@/utils/getProductsHome";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import Link from "next/link";
@@ -13,15 +13,15 @@ export const MapProductCard: React.FC = (): React.ReactNode => {
   //defino useDispatch para pasarlo como argumento a fetchProducts
   const dispatch = useDispatch();
   const dataGlobal = useSelector((state: RootState) => state.products.data);
-
-  //const [dataGlobalLocal, setDataGlobalLocal] = useState()
-
   console.log(dataGlobal);
+  
+
+  const [page, setPage] = useState()
 
   //GET PRODUCTS A LA API + CARGA DE DATOS EN LA STORE.
   useEffect(() => {
     if (dataGlobal.length === 0) {
-      fetchProducts(dispatch);
+      fetchProductsHome(dispatch, page);
     }
   }, [dispatch, dataGlobal.length]);
 
