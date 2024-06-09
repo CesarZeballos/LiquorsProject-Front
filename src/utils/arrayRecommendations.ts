@@ -5,7 +5,7 @@ export const arrayRecommendations = [
     imageF: "/recommendation/redFront.png",
     imageP: "/recommendation/redP.png",
     description:
-      "La clásica Margarita, una bebida que nunca pasa de moda. Perfecta para cualquier celebración.",
+      "El vino rosado, es una bebida fresca y elegante, elaborada a partir de la fermentación de uvas tintas con un breve contacto con las pieles, ofreciendo sabores suaves y afrutados.",
     color: "darkred",
     link: "/recomendaciones/margarita-clasica",
   },
@@ -15,7 +15,7 @@ export const arrayRecommendations = [
     imageF: "/recommendation/blueFront.png",
     imageP: "/recommendation/blueP.png",
     description:
-      "El Negroni es la elección perfecta para una noche sofisticada. Un cóctel con carácter y estilo.",
+      "Grey Goose Vodka es la máxima expresión de lujo y pureza, elaborada con trigo de invierno francés y agua de manantial, destilada cinco veces para una suavidad incomparable.",
     color: "darkblue",
     link: "/recomendaciones/negroni",
   },
@@ -25,7 +25,7 @@ export const arrayRecommendations = [
     imageF: "/recommendation/greenFront.png",
     imageP: "/recommendation/greenP.png",
     description:
-      "El Old Fashioned es el cóctel perfecto para los amantes del whisky. Sencillo, pero lleno de sabor.",
+      "Heineken es una cerveza premium reconocida mundialmente, elaborada con ingredientes de alta calidad y una receta única que ofrece un sabor refrescante y equilibrado.",
     color: "darkgreen",
     link: "/recomendaciones/old-fashioned",
   },

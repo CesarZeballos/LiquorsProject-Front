@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 const SuscribeCard = ({ product }: { product: ISuscribe }) => {
   const router = useRouter();
   const [userId, setUserId] = useState<string | null>(null);
+  const [role, setRole] = useState(0);
   /*   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null); */
@@ -15,22 +16,26 @@ const SuscribeCard = ({ product }: { product: ISuscribe }) => {
     const userDataLogin = localStorage.getItem("userDataLogin");
     if (userDataLogin) {
       const userData = JSON.parse(userDataLogin);
+      setRole(userData.role);
       setUserId(userData.id);
     }
   }, []);
 
   const handlePayment = async () => {
     try {
-      const response = await axios.post(
-        `https://liquors-project.onrender.com/subscription/${userId}`,
-        {
-          type: product.type,
-          /* le saqué status:"active" porque el back se acutalizó, pero el deploy aún no */
-          amount: product.price,
-        }
-      );
-      console.log(response);
-      router.push(response.data.init_point);
+      if (role === product.role) {
+        console.log(role);
+        alert(`Ya eres un usuario ${product.type}`);
+      } else {
+        const response = await axios.post(
+          `https://liquors-project.onrender.com/subscription/${userId}`,
+          {
+            type: product.type,
+          }
+        );
+        console.log(response);
+        router.push(response.data.init_point);
+      }
     } catch (error) {
       console.error("Error during subscription:", error);
     }

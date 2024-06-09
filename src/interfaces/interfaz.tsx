@@ -27,7 +27,7 @@ export interface ProductsState {
   data: Product[];
   ginProducts: Product[];
   wineProducts: Product[];
-  dataFiltered: Product[],
+  dataFiltered: Product[];
   page: number[];
 }
 
@@ -76,6 +76,7 @@ export interface ISuscribe {
   description4: string;
   price: number;
   type: string;
+  role: number;
 }
 
 export interface IPremium {
