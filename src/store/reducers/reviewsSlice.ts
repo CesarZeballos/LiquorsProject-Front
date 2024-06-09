@@ -22,17 +22,11 @@ const reviewsSlice = createSlice({
     clearReviews: (state) => {
       state.data = [];
     },
-    updateReviews: (state, action: PayloadAction<IReview>) => {
-      const index = state.data.findIndex(
-        (review) => review.id === action.payload.id
-      );
-      if (index !== -1) {
-        state.data[index] = action.payload;
-      }
-    },
     removeReview: (state, action: PayloadAction<string>) => {
       state.data = state.data.filter((review) => review.id !== action.payload);
     },
+    updateReviews: (state, action: PayloadAction<IReview>) => {},
+    deleteReviews: (state, action: PayloadAction<string>) => {},
   },
 });
 
@@ -40,9 +34,9 @@ export const {
   createReviews,
   readReviews,
   clearReviews,
-  updateReviews,
-
   removeReview,
+  updateReviews,
+  deleteReviews,
 } = reviewsSlice.actions;
 
 export default reviewsSlice.reducer;
