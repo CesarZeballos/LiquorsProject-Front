@@ -90,7 +90,7 @@ const Product: React.FC = (): React.ReactNode => {
         <button className="mb-4 px-4 py-2 bg-wine text-white rounded-lg" onClick={toggleFilterVisibility}>
           {isFilterVisible ? "Ocultar Filtro" : "Mostrar Filtro"}
         </button>
-        {isFilterVisible && <ProductFilterCard fetchFilterBack={fetchFilterBack} onFilterChange={handleFilterChange} />}
+        {isFilterVisible && <ProductFilterCard  fetchFilterBack={fetchFilterBack} onFilterChange={handleFilterChange} />}
         
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <MapProductCard />

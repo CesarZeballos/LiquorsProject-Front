@@ -31,6 +31,25 @@
   scrollbar-width: none;
 }
 
+.blur-right-container {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.blur-right-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px; /* Ancho del borde derecho con desenfoque */
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  filter: blur(5px); /* Efecto de desenfoque */
+  pointer-events: none; /* Permite hacer clic a través del pseudo-elemento */
+}
+
 /*______________*/
 
 /**/
