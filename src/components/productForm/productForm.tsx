@@ -160,7 +160,7 @@ export const ProductForm = () => {
             <div className="flex flex-col my-2">
                 <label className="pb-2 text-gray-600 text-l font-normal">URL de la imagen: </label>
                 <input
-                    type="file"
+                    type="text"
                     name="imgUrl"
                     value={dataProduct.imgUrl}
                     onChange={handleChange}

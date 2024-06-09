@@ -1,5 +1,4 @@
 import axios from "axios";
-import { AppDispatch } from "@/store/store";
 import { IProductUpdatedData } from "@/components/productForm/types";
 
 export const postProduct = async (userId: string, dataProduct: IProductUpdatedData, token: string) => {
