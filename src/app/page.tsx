@@ -33,7 +33,6 @@ export default function Landing() {
           <BannerProductsGin />
         </div>
 
-        
          {/*SECCION TRES DE TARJETAS (aqui podria ir otra a eleccion*/}
          <div className="w-full bg-grey4">
 
