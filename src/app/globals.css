@@ -104,7 +104,6 @@ body {
   @apply border-beige text-blackup  font-plus-jakarta-sans  font-normal text-base leading-6;
 }
 
-
 .buttonSecondary:hover {
    color: #c23a2e;
    transition: 0.3s;
@@ -121,4 +120,19 @@ body {
 .cardTeamImg {
   @apply w-20 h-20 border-2 border-wine;
   border-radius: 50%;
+}
+
+.placeholder {
+  @apply text-gray-400 rounded border border-gray-400 outline-none px-2
+  hover:border-wine hover:ring-1
+  hover:ring-wine
+  focus:border-wine
+  focus:ring-2
+  focus:ring-wine
+  transition
+  duration-200;
+}
+
+.input-text {
+  @apply text-black
 }

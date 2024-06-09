@@ -6,6 +6,7 @@ import { IProductForm, IProductFormErrorProps } from "./types";
 import { usePathname } from "next/navigation";
 import { postProduct } from "@/utils/postProduct";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const categories = [
     "vino",
@@ -15,7 +16,6 @@ const categories = [
 ]
 
 const countries = ["Argentina", "Brazil", "Canada", "France", "Germany", "Italy", "Japan", "Mexico", "Spain", "United Kingdom", "United States"];
-
 
 export const ProductForm = () => {
     const pathname = usePathname();
@@ -38,7 +38,7 @@ export const ProductForm = () => {
         description: "",
         country: "",
         brand: "",
-        abv: 0,
+        abv: "",
         imgUrl: "",
         size: "",
         category: "",
@@ -53,7 +53,6 @@ export const ProductForm = () => {
         category: ""
     })
 
-    //logica para traer los datos del usuario
     useEffect(() => {
         if( typeof window !== "undefined" && window.localStorage) {
         const storeData = localStorage.getItem("userDataLogin");
@@ -115,51 +114,68 @@ export const ProductForm = () => {
         }
     }
 
+    const handleCancel = () => {
+        setDataProduct({
+            name: "",
+            description: "",
+            country: "",
+            brand: "",
+            abv: "",
+            imgUrl: "",
+            size: "",
+            category: "",
+        })
+    }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h1>completa los siguientes campos para agregar tu producto:</h1>
-            <div>
-                <label>Nombre del producto: </label>
+        <div className="flex flex-col items-center justify-center">
+        <form onSubmit={handleSubmit} className="flex flex-col justify-center w-fit p-6 bg-greyVivino">
+            <h1 className="pb-8 text-gray-600 text-xl font-normal">completa los siguientes campos para agregar tu producto:</h1>
+            <div className="flex flex-col my-2">
+                <label className="pb-2 text-gray-600 text-l font-normal">Nombre del producto: </label> 
                 <input
                     type="text"
                     name="name"
                     value={dataProduct.name}
                     onChange={handleChange}
-                    className="input"
+                    className="placeholder input-text"
+                    placeholder="Gin Bombay"
                     required
                     />
                 {errorProduct.name && <p>{errorProduct.name}</p>}
             </div>
-            <div>
-                <label>Descripción: </label>
+            <div className="flex flex-col my-2">
+                <label className="pb-2 text-gray-600 text-l font-normal">Descripción: </label>
                 <input
                     type="text"
                     name="description"
                     value={dataProduct.description}
                     onChange={handleChange}
-                    className="input"
+                    className="placeholder input-text"
+                    placeholder="El Gin Bombay es una variedad de ginebra reconocida por su sabor distintivo y suavidad. Producido por Bombay Sapphire, este gin se destaca por sus notas frescas y herbales,"
                     required
                     />
                 {errorProduct.description && <p>{errorProduct.description}</p>}
             </div>
-            <div>
-                <label>URL de la imagen: </label>
+            <div className="flex flex-col my-2">
+                <label className="pb-2 text-gray-600 text-l font-normal">URL de la imagen: </label>
                 <input
-                    type="text"
+                    type="file"
                     name="imgUrl"
                     value={dataProduct.imgUrl}
                     onChange={handleChange}
-                    className="input"
+                    className="placeholder input-text"
+                    placeholder="Gin Bombay"
                     required
                     />
                 {errorProduct.imgUrl && <p>{errorProduct.imgUrl}</p>}
             </div>
-            <div>
-                <label>Categoría:</label>
+            <div className="flex flex-row items-center gap-2my-2">
+                <label className="pb-2 text-gray-600 text-l font-normal">Categoría:</label>
+                <div className="m-2 flex flex-row gap-2">
                 {categories.map(category => (
                     <div key={category}>
-                        <label>
+                        <label className="flex flex-row gap-2 text-gray-600 text-l font-normal">
                             <input
                                 type="radio"
                                 name="category"
@@ -171,35 +187,39 @@ export const ProductForm = () => {
                         </label>
                     </div>
                 ))}
+                </div>
                 {errorProduct.category && <p>{errorProduct.category}</p>}
             </div>
-            <div>
-                <label>ml: </label>
+            <div className="flex flex-row item-center gap-2 my-2">
+                <label className="pb-2 text-gray-600 text-l font-normal">ml: </label>
                 <input
                     type="number"
                     name="size"
                     value={dataProduct.size}
                     onChange={handleChange}
-                    className="input"
+                    className="placeholder input-text"
+                    placeholder="750"
                     required
                     />
                 {errorProduct.size && <p>{errorProduct.size}</p>}
             </div>
-            <div>
-                <label>Graduacion alcoholica (en numeros): </label>
+            <div className="flex flex-row item-center gap-2 my-2">
+                <label className="pb-2 text-gray-600 text-l font-normal">Graduacion alcoholica (en numeros): </label>
                 <input
                     type="number"
                     name="abv"
                     value={dataProduct.abv}
                     onChange={handleChange}
-                    className="input"
+                    className="placeholder input-text"
+                    placeholder="37.5"
                     required
                     />
                 {errorProduct.abv && <p>{errorProduct.abv}</p>}
             </div>
             <div>
-      <label htmlFor="country">Country</label>
+      <label htmlFor="country" className="pb-2 text-gray-600 text-l font-normal">Country </label>
       <select
+      className="rounded border border-gray-400 outline-none hover:border-wine hover:ring-1 hover:ring-wine focus:border-wine focus:ring-2 focus:ring-wine transition duration-200"
         id="country"
         name="country"
         value={dataProduct.country}
@@ -212,8 +232,12 @@ export const ProductForm = () => {
       </select>
       {errorProduct.country && <span>{errorProduct.country}</span>}
     </div>
-            <button type="submit" className="but">agregar</button>
+    <div className="flex flex-row gap-6 my-6 items-center justify-center">
+        <button type="button" className="buttonSecondary hover:cursor-pointer" onClick={handleCancel}>Cancelar</button>
+        <button type="submit" className="buttonPrimary hover:cursor-pointer w-fit">agregar</button>
+    </div>
         </form>
+        </div>
     );
 }
 
