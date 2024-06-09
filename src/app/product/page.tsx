@@ -26,7 +26,7 @@ const Product: React.FC = (): React.ReactNode => {
 
   useEffect(() => {
     const rol: any = localStorage.getItem("userDataLogin");
-    setHasRol(4);
+    setHasRol(rol);
   }, []);
 
   const router = useRouter();
