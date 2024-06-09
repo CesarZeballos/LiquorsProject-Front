@@ -31,6 +31,7 @@ const SuscribeCard = ({ product }: { product: ISuscribe }) => {
           `https://liquors-project.onrender.com/subscription/${userId}`,
           {
             type: product.type,
+            amount: product.price,
           }
         );
         console.log(response);

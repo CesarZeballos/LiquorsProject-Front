@@ -19,7 +19,7 @@ export const arraySuscribe: ISuscribe[] = [
     description3: "Puedes hacer otras cosas we",
     description4: "Descripción mágica que no se me ocurre",
     price: 200,
-    type: "empresa",
+    type: "seller",
     role: 3,
   },
 ];
