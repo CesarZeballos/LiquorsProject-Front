@@ -3,6 +3,7 @@ import { ProductForm } from "@/components/productForm/productForm";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ProductsListSeller } from "../productsListSeller/productsListSeller";
+import { UserData } from "../userData/userData";
 
 export const DashboardProducer = () => {
     const [searchBar, setSearchBar] = useState("infoUser")
@@ -18,7 +19,7 @@ export const DashboardProducer = () => {
           <button className="buttonPrimary hover:cursor-pointer" value="addProduct" onClick={HandlerSearchBar}>Agregar un producto</button>
         </div>
         {searchBar === "infoUser" && (
-          
+          <UserData />
         )}
         {searchBar === "products" && (
         <ProductsListSeller />
