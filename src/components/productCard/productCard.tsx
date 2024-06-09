@@ -10,10 +10,10 @@ import { getColorClass } from "@/utils/cardBorderColorDinamic";
 
 const ProductCard: React.FC<{ product: Product}> = ({product}): React.ReactNode => {
 
-  //constante con valor de funcione para color borde-top condicional.
-  const colorClass = getColorClass(product.category);
+  /*constante con valor de funcione para color borde-top condicional.
+  const colorClass = getColorClass(product.category);*/
 
-  //funcion para color borde condicional ()
+  /*funcion para color borde condicional ()
   const getColorClassDos = (category: string): string => {
     if (category === "Vino") {
       return "border-wine";
@@ -32,11 +32,11 @@ const ProductCard: React.FC<{ product: Product}> = ({product}): React.ReactNode 
   };
 
   //constante con valor de funcione para color borde condicional.
-  const colorClassDos = getColorClassDos(product.category);
+  const colorClassDos = getColorClassDos(product.category);*/
   
   return (
     <div
-      className={`flex flex-col relative bg-white items-center h-96 border-t-8 hover:cursor-pointer rounded-t-xl border-solid ${colorClassDos} ${colorClass} border-2 rounded-lg p-4 m-4 w-48`}>
+      className={`flex flex-col relative bg-white items-center h-96 border-t-8 hover:cursor-pointer rounded-t-xl border-solid border-t-wine border-wine border-2 rounded-lg p-4 m-4 w-48`}>
       <h2 className="text-center text-lg font-Lora mb-2">{product.name}</h2>
       <img
         className="my-2 h-48 w-48 object-cover rounded-md"

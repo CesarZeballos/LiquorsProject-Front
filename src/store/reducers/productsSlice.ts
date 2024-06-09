@@ -5,6 +5,8 @@ const initialState: ProductsState = {
   data: [],
   ginProducts: [],
   wineProducts: [],
+  dataFiltered: [],
+  page: [],
 };
 
 /* este es el crud redux de products */
@@ -18,27 +20,46 @@ const productsSlice = createSlice({
     readProducts(state, action: PayloadAction<Product[]>) {
       state.data = state.data.concat(action.payload);
     },
+    clearProducts(state) { // Nuevo reducer para limpiar los productos
+      state.data = [];
+    },
     readGinProducts(state, action: PayloadAction<Product[]>) {
-      state.ginProducts = action.payload;
+      state.ginProducts = state.ginProducts.concat(action.payload);
     },
     clearGinProducts(state) {
       state.ginProducts = [];
     },
+    //REVISAR ESTADO GLOBAL PRODUCT FILTERED
+    readProductsFiltered(state, action: PayloadAction<Product[]>) {
+      state.dataFiltered = state.dataFiltered.concat(action.payload);
+    },
+    clearProductsFiltered(state) {
+      state.dataFiltered = [];
+    },
+    //_______________________________________
+
     readWineProducts(state, action: PayloadAction<Product[]>) {
-      state.ginProducts = action.payload;
+      state.wineProducts = state.wineProducts.concat(action.payload);
     },
     clearWineProducts(state) {
-      state.ginProducts = [];
-    },
-    clearProducts(state) { // Nuevo reducer para limpiar los productos
-      state.data = [];
+      state.wineProducts = [];
     },
     updateProducts(state, action) {},
     deleteProducts(state, action) {},
   },
 });
 
-export const { createProducts, readProducts, readWineProducts, clearWineProducts, updateProducts,clearGinProducts, readGinProducts, deleteProducts, clearProducts } =
-  productsSlice.actions;
+export const { 
+  createProducts,
+  readProductsFiltered, 
+  clearProductsFiltered, 
+  readProducts, 
+  readWineProducts, 
+  clearWineProducts, 
+  updateProducts,
+  clearGinProducts, 
+  readGinProducts, 
+  deleteProducts, 
+  clearProducts } = productsSlice.actions;
 
 export default productsSlice.reducer;

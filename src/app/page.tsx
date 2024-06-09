@@ -19,7 +19,7 @@ export default function Landing() {
         <div className="flex space-x-4">
           <BannerProducts />
         </div>
-
+        
         {/*SECCION DOS DE TARJETAS (solo gins) */}
         <div className="w-full bg-black">
           <h1 className="text-center font-plus-jakarta-sans text-2xl mt-6 text-white font-normal mb-4 relative z-10">
@@ -29,8 +29,10 @@ export default function Landing() {
         
         <ExpandMoreIcon className="flex items-center mt-6" />
         <div className="flex space-x-4">
+          {/*FILTRA DESDE EL BACK SOLO GIN */}
           <BannerProductsGin />
         </div>
+        
          {/*SECCION TRES DE TARJETAS (aqui podria ir otra a eleccion*/}
          <div className="w-full bg-grey4">
           <h1 className="text-center font-plus-jakarta-sans text-2xl mt-6 text-white font-normal mb-4 relative z-10">

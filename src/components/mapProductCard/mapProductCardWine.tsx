@@ -9,12 +9,11 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 import { Product } from "@/interfaces/interfaz";
 
-export const MapProductCardGin: React.FC = (): React.ReactNode => {
+export const MapProductCardWine: React.FC = (): React.ReactNode => {
 
  //defino useDispatch para pasarlo como argumento a fetchProducts
  const dispatch = useDispatch()
  const ginProducts = useSelector((state: any) => state.products.ginProducts);
- console.log(ginProducts);
  
 
   //GET PRODUCTS A LA API + CARGA DE DATOS EN LA STORE.
@@ -45,4 +44,4 @@ export const MapProductCardGin: React.FC = (): React.ReactNode => {
   );
 };
 
-export default  MapProductCardGin;
+export default  MapProductCardWine;

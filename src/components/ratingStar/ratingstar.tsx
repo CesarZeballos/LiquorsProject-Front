@@ -2,13 +2,14 @@ import * as React from 'react';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { useSelector } from 'react-redux';
+import { RootState } from '@reduxjs/toolkit/query';
 
 export default function HalfRating() {
 
-  //estado global que contiene las reviews
-  const ratingReview = useSelector((state: any) => state.reviews.data)
-  console.log(ratingReview);
-  
+  //deberia traer todas las reviews, de un producto especficio y recien ahi hacer el 
+  //promedio
+
+
   return (
     <Stack spacing={1}>
       {/*deberia crear promedio de reviews de ratingReview y ponerlo en defaultValue. */}

@@ -35,7 +35,8 @@ const config: Config = {
         darkred: "#330000",
         darkblue: "#000033",
         darkgreen: "#003300",
-        blueGoogle: "#0086f9"
+        blueGoogle: "#0086f9",
+        greenVivino: "#006b4d"
       },
       fontFamily: {
         Lato: ["Lato", "sans-serif"],

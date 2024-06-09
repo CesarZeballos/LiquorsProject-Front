@@ -5,82 +5,89 @@ import StarIcon from "@mui/icons-material/Star";
 
 interface ProductFilterCardProps {
   onFilterChange: (filters: any) => void;
+  fetchFilterBack: () => void
 }
 
 const ProductFilterCard: React.FC<ProductFilterCardProps> = ({
-  onFilterChange,
+  onFilterChange, fetchFilterBack
 }) => {
-  const [selectedButton, setSelectedButton] = useState<string | null>(null);
-  const [priceRange, setPriceRange] = useState<number[]>([0, 100]);
+
+  //filtro categoria
+  const [ categoryButton, setSelectedButton] = useState<string | null>(null);
+  //Filtro Abv
+  //const [abvRange, setPriceRange] = useState<number[]>([0, 100]);
+  const [abvRange, setPriceRange] = useState<number>(0);
+
+  //filtro rate
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
 
   const handleButtonClick = (buttonValue: string) => {
     setSelectedButton(buttonValue);
-    onFilterChange({ selectedButton: buttonValue, priceRange, selectedRating });
+    onFilterChange({  categoryButton: buttonValue, abvRange, selectedRating });
   };
 
   const handleSliderChange = (event: any, newValue: number | number[]) => {
-    setPriceRange(newValue as number[]);
-    onFilterChange({ selectedButton, priceRange: newValue, selectedRating });
+    setPriceRange(newValue as number);
+    onFilterChange({  categoryButton, abvRange: newValue, selectedRating });
   };
 
   const handleRatingChange = (rating: number) => {
     setSelectedRating(rating);
-    onFilterChange({ selectedButton, priceRange, selectedRating: rating });
+    onFilterChange({  categoryButton, abvRange, selectedRating: rating });
   };
 
   return (
     <div className="flex flex-col mt-5 bg-greyVivino border p-4 ml-0 mr-6 rounded-lg shadow-md w-1/4">
       {/*FILTRO POR TIPO BEBIDA */}
       <h1 className="text-lg font-normal  font-plus-jakarta-sans mb-4">Filters</h1>
-      <div className="mb-4 flex p-1 flex-row justify-center">
+      <div className="mb-4 flex p-1 flex-wrap justify-center">
         <button
           className={`px-4 py-2 font-plus-jakarta-sans bg-white rounded-3xl border border-solid border-wine ${
-            selectedButton === "option1"
+            categoryButton === "Whisky"
               ? "bg-wine text-white"
               : "bg-gray-200 text-wine"
           }`}
-          onClick={() => handleButtonClick("option1")}
+          onClick={() => handleButtonClick("Whisky")}
         >
           Whisky
         </button>
         <button
           className={`px-4 py-2 mx-2 font-plus-jakarta-sans bg-white rounded-3xl border border-solid border-wine ${
-            selectedButton === "option2"
+            categoryButton === "Gin"
               ? "bg-wine text-white"
               : "bg-gray-200 text-wine"
           }`}
-          onClick={() => handleButtonClick("option2")}
+          onClick={() => handleButtonClick("Gin")}
         >
           Gin
         </button>
         <button
           className={`px-4 py-2  font-plus-jakarta-sans bg-white rounded-3xl border border-solid border-wine ${
-            selectedButton === "option3"
+            categoryButton === "Vodka"
               ? "bg-wine text-white"
               : "bg-gray-200 text-wine"
           }`}
-          onClick={() => handleButtonClick("option3")}
+          onClick={() => handleButtonClick("Vodka")}
         >
           Vodka
         </button>
         <button
           className={`px-4 py-2  font-plus-jakarta-sans bg-white rounded-3xl border border-solid border-wine ${
-            selectedButton === "option3"
+            categoryButton === "Tequila"
               ? "bg-wine text-white"
               : "bg-gray-200 text-wine"
           }`}
-          onClick={() => handleButtonClick("option3")}
+          onClick={() => handleButtonClick("Tequila")}
         >
           Tequila
         </button>
         <button
           className={`px-4 py-2  font-plus-jakarta-sans bg-white rounded-3xl border border-solid border-wine ${
-            selectedButton === "option3"
+            categoryButton === "Ron"
               ? "bg-wine text-white"
               : "bg-gray-200 text-wine"
           }`}
-          onClick={() => handleButtonClick("option3")}
+          onClick={() => handleButtonClick("Ron")}
         >
           Ron
         </button>
@@ -90,7 +97,7 @@ const ProductFilterCard: React.FC<ProductFilterCardProps> = ({
       {/*FILTRO POR RANGO PRECIO U OTRA VARIABLE. */}
       <h1 className="text-lg font-normal pt-3  font-plus-jakarta-sans mb-4">Abv Range</h1>
       <Slider
-        value={priceRange}
+        value={abvRange}
         onChange={handleSliderChange}
         valueLabelDisplay="auto"
         min={0}
@@ -105,7 +112,7 @@ const ProductFilterCard: React.FC<ProductFilterCardProps> = ({
             color: '#c23a2e',  // Color de la pista (track)
           },
           '& .MuiSlider-rail': {
-            color: '#c23a2e',  // Color del rail (parte de la pista no recorrida)
+            color: '#8c8c8c',  // Color del rail (parte de la pista no recorrida)
           },
         }}
       />
@@ -128,6 +135,7 @@ const ProductFilterCard: React.FC<ProductFilterCardProps> = ({
           </div>
         ))}
       </div>
+      <button onClick={fetchFilterBack} className="px-1 py-2  font-plus-jakarta-sans  hover:brightness-110 bg-greenVivino mt-6 rounded-3xl border border-solid text-white">buscar</button>
     </div>
   );
 };

@@ -29,6 +29,8 @@ export interface ProductsState {
   data: Product[];
   ginProducts: Product[];
   wineProducts: Product[];
+  dataFiltered: Product[],
+  page: number[];
 }
 
 export interface IUser {

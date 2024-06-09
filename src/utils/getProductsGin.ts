@@ -6,8 +6,8 @@ import { Product } from "@/interfaces/interfaz";
 
 export const fetchProductsGin = async (dispatch: AppDispatch) => {
   try {
-      const res = await axios.get<Product[]>("https://liquors-project.onrender.com/products/?category=Gin");
-      //deberia hacer un estado global nuevo solo para products/gins.
+    //que solo traiga 4 paginas
+      const res = await axios.get<Product[]>("https://liquors-project.onrender.com/products/?category=Gin&page=1&limit=10");
       dispatch(clearGinProducts());
       dispatch(readGinProducts(res.data));
   } catch (err) {

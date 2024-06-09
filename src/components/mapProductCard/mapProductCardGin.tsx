@@ -14,7 +14,6 @@ export const MapProductCardGin: React.FC = (): React.ReactNode => {
  //defino useDispatch para pasarlo como argumento a fetchProducts
  const dispatch = useDispatch()
  const ginProducts = useSelector((state: any) => state.products.ginProducts);
- console.log(ginProducts);
  
 
   //GET PRODUCTS A LA API + CARGA DE DATOS EN LA STORE.
@@ -40,7 +39,7 @@ export const MapProductCardGin: React.FC = (): React.ReactNode => {
                   <ProductCard key={product.id} product={product} />
                 </p>
               </Link>
-            ))}
+          ))}
       </>
   );
 };

@@ -1,19 +1,24 @@
-"use client";
+"use client"
 import React, { useRef, useState, useEffect } from "react";
 import MapProductCard from "../mapProductCard/mapProductCard";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import LastPageIcon from '@mui/icons-material/LastPage';
 import "tailwindcss/tailwind.css";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+
 
 const BannerProducts: React.FC = () => {
   const scrollContainer = useRef<HTMLDivElement>(null);
   const [currentSection, setCurrentSection] = useState(0);
   const cardsPerPage = 3;
   const dataGlobal = useSelector((state: any) => state.products.data);
-  
-  // Calcula el número máximo de secciones basado en la cantidad de tarjetas y tarjetas por página.
   const maxSections = Math.ceil(dataGlobal.length / cardsPerPage) - 1;
+
+  const router = useRouter()
+ 
 
   const scroll = (direction: "left" | "right") => {
     if (scrollContainer.current) {
@@ -25,7 +30,6 @@ const BannerProducts: React.FC = () => {
     }
   };
 
-  // UseEffect para ajustar la posición del scroll del contenedor de tarjetas
   useEffect(() => {
     if (scrollContainer.current) {
       const scrollAmount = scrollContainer.current.offsetWidth;
@@ -36,42 +40,53 @@ const BannerProducts: React.FC = () => {
     }
   }, [currentSection]);
 
+  
+
   return (
     <div className="relative flex justify-center flex-col pt-7 pb-4 bg-greyMLfilter w-3/4 max-w-screen-lg mx-auto">
-      <div className="flex justify-center items-center relative w-full">
-        {/* FLECHA IZQUIERDA */}
+      <div className="relative flex justify-center items-center w-full">
+        {/*FLECHA IZQUIERDA*/}
         <button
           onClick={() => scroll("left")}
-          className="absolute left-0  mr-96 p-2 z-10"
+          className="absolute left-0 mr-96 p-2 z-10"
           disabled={currentSection === 0}
         >
           <div className="rounded-full bg-wine p-2 ">
-          
-          <ArrowBackIosIcon className="h-6 w-6 text-white" />
-          
+            <ArrowBackIosIcon className="h-6 w-6 text-white" />
           </div>
         </button>
-        {/* Contenedor de tarjetas */}
-        <div ref={scrollContainer} className="flex overflow-hidden w-full">
-          <div className="flex space-x-4 transition-transform duration-500">
-            <MapProductCard />
-          </div>
-        </div>
-
-        {/* FLECHA DERECHA */}
+  
+        {/*FLECHA DERECHA*/}
         <button
           onClick={() => scroll("right")}
           className="absolute right-0 p-2 z-10"
           disabled={currentSection === maxSections}
         >
           <div className="rounded-full bg-wine p-2 ">
-          <ArrowForwardIosIcon className="h-6 w-6 text-white" />
+            <ArrowForwardIosIcon className="h-6 w-6 text-white" />
           </div>
         </button>
+  
+        {/* Contenedor de tarjetas */}
+        <div ref={scrollContainer} className="flex overflow-hidden w-full">
+          <div className="flex space-x-4 transition-transform duration-500">
+            <MapProductCard />
+          </div>
+        </div>
       </div>
-      <section className="flex justify-start text-white mt-4"></section>
+  
+      {/* Botón "Ver más" */}
+      {currentSection === maxSections && (
+        <div className="flex justify-end mt-4">
+          <button onClick={() => router.push("/product")} className="bg-wine text-white py-2 px-4 rounded-md">
+          Ver más
+            <LastPageIcon className="mr-1 ml-3" />
+            
+          </button>
+        </div>
+      )}
     </div>
   );
-};
+}
 
 export default BannerProducts;
