@@ -1,3 +1,5 @@
+/* import EmailJSForm from "@/components/emailJSForm/EmailJSForm"; */
+import EmailJSForm from "@/components/emailJSForm/EmailJSForm";
 import NewsList from "@/components/newsList/NewsList";
 
 const Newsletter = () => {
@@ -14,6 +16,7 @@ const Newsletter = () => {
         </p>
       </div>
       <NewsList />
+      <EmailJSForm></EmailJSForm>
     </div>
   );
 };
