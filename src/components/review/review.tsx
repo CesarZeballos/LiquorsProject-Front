@@ -17,11 +17,10 @@ export const Review = ({ review }: { review: IReview }) => {
   useEffect(() => {
     fetchReviews(dispatch);
     console.log("dataReviews", dataReviews);
-  }, [dispatch, dataReviews]);
+  }, [dispatch]);
 
-  const { id, rate, comment, userId } = review; /* datos de la review */
-  const { name } = userId; /* datos del usuario que hizo la review */
-
+  const { id, rate, comment, userId } = review;
+  const { name } = userId;
   const handleDelete = async (id: string) => {
     if (confirm("¿Estás seguro de que quieres eliminar esta review?")) {
       try {

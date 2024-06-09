@@ -1,7 +1,5 @@
-import { MouseEventHandler } from "react";
-
 export interface Login {
-  name: string,
+  name: string;
   email: string;
   password: string;
 }
@@ -84,3 +82,10 @@ export interface IPremium {
   amount: number;
 }
 
+export interface INews {
+  imageB: string;
+  imageF: string;
+  title: string;
+  text: string;
+  direction: "left" | "right";
+}

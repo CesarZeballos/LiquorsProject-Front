@@ -18,7 +18,7 @@ export const ReviewContainer: React.FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (dataReviews.length === 0) {
+    if (dataReviews.length === 0 || dataReviews.length <= 5) {
       fetchReviews(dispatch);
     }
   }, [dispatch, dataReviews.length]);

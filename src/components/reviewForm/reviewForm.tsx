@@ -7,12 +7,15 @@ import { readReviews } from "@/store/reducers/reviewsSlice";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export const ReviewForm = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     comment: "",
     rate: 0,
   });
+  const userDataLogin = localStorage.getItem("userDataLogin");
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -55,7 +58,12 @@ export const ReviewForm = () => {
 
   const handlerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    postReviews(formData);
+    if (userDataLogin) {
+      postReviews(formData);
+    } else {
+      alert("Debes ingresar para realizar una reseña!");
+      router.push("/login");
+    }
   };
 
   return (

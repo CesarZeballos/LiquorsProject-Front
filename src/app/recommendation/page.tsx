@@ -6,6 +6,7 @@ const Recommendation = () => {
     <div>
       <div>
         <HalfRecommendationFather />
+
         <SuscribeCards></SuscribeCards>
       </div>
     </div>
