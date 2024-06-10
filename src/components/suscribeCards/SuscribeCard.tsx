@@ -26,6 +26,18 @@ const SuscribeCard = ({ product }: { product: ISuscribe }) => {
       if (role === product.role) {
         console.log(role);
         alert(`Ya eres un usuario ${product.type}`);
+      }
+      if (role === 4 && product.role === 3) {
+        const response = await axios.post(
+          `https://liquors-project.onrender.com/subscription/${userId}`,
+          {
+            type: product.type,
+            amount: 200,
+            amountDif: 100,
+          }
+        );
+        console.log(response);
+        router.push(response.data.init_point);
       } else {
         const response = await axios.post(
           `https://liquors-project.onrender.com/subscription/${userId}`,

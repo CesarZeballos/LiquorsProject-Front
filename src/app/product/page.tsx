@@ -8,12 +8,11 @@ import { fetchProducts } from "@/utils/getProducts";
 import { useDispatch } from "react-redux";
 
 const Product: React.FC = (): React.ReactNode => {
-
   const dispatch = useDispatch();
-  
+
   const [filters, setFilters] = useState<any>({});
   console.log(filters);
-  
+
   //ESTADO LOCAL SEARCHBAR
   const [search, setSearch] = useState({ item: "" });
   //ESTADO LOCAL ROL DE USUARIO
@@ -25,8 +24,10 @@ const Product: React.FC = (): React.ReactNode => {
   const [productCards, setProductCards] = useState<any[]>([]);
 
   useEffect(() => {
-    const rol: any = localStorage.getItem("userDataLogin");
-    setHasRol(rol);
+    const userDataLogin = localStorage.getItem("userDataLogin");
+    const userData = JSON.parse(userDataLogin!);
+    console.log("este es el role", userData.role);
+    setHasRol(userData.role);
   }, []);
 
   const router = useRouter();
@@ -87,20 +88,30 @@ const Product: React.FC = (): React.ReactNode => {
       </section>
 
       <section className="flex pt-10 pb-10 bg-greyVivino items-start">
-        <button className="mb-4 px-4 py-2 bg-wine text-white rounded-lg" onClick={toggleFilterVisibility}>
+        <button
+          className="mb-4 px-4 py-2 bg-wine text-white rounded-lg"
+          onClick={toggleFilterVisibility}
+        >
           {isFilterVisible ? "Ocultar Filtro" : "Mostrar Filtro"}
         </button>
-        {isFilterVisible && <ProductFilterCard  fetchFilterBack={fetchFilterBack} onFilterChange={handleFilterChange} />}
-        
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <MapProductCard />
-          </div>
-      
+        {isFilterVisible && (
+          <ProductFilterCard
+            fetchFilterBack={fetchFilterBack}
+            onFilterChange={handleFilterChange}
+          />
+        )}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <MapProductCard />
+        </div>
       </section>
 
       {productCards.length >= page * 9 && (
         <div className="flex justify-center mt-4">
-          <button onClick={loadMoreProducts} className="bg-wine text-white py-2 px-4 rounded-md">
+          <button
+            onClick={loadMoreProducts}
+            className="bg-wine text-white py-2 px-4 rounded-md"
+          >
             Siguiente página
           </button>
         </div>
