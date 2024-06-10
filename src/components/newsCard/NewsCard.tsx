@@ -26,9 +26,11 @@ const NewsItem = ({ newItem }: { newItem: INews }) => {
         }`}
       >
         <div className="z-50">
-          <h2 className="z-40 text-2xl font-plus-jakarta-sans text-gray-800 mb-2">
-            {newItem.title}
-          </h2>
+          <b>
+            <h2 className="z-40 text-2xl font-plus-jakarta-sans text-gray-800 mb-2">
+              {newItem.title}
+            </h2>
+          </b>
         </div>
         <div className="z-50">
           <p className="  text-gray-700 text-base font-plus-jakarta-sans">

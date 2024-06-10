@@ -30,6 +30,7 @@ const EmailJSForm = () => {
         (res) => {
           console.log("SUCCESS!", res.text);
           alert("Correo enviado con éxito");
+          setUserData({ name: "", email: "" });
         },
         (error) => {
           console.log("FAILED...", error.text);
