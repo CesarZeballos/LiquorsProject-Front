@@ -42,7 +42,7 @@ const BannerProducts: React.FC = () => {
   
 
   return (
-    <div className="relative flex justify-center flex-col pt-7 pb-4 bg-greyMLfilter w-3/4 max-w-screen-lg mx-auto">
+    <div className="relative flex justify-center flex-col pt-7 pb-4 bg-greyMLfilter w-11/12 max-w-screen-lg mx-auto">
       <div className="relative flex justify-center items-center w-full">
         {/*FLECHA IZQUIERDA*/}
         <button

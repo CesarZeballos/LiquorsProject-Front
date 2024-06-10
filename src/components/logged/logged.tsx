@@ -3,10 +3,19 @@ import Link from "next/link";
 //icons
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useEffect, useState } from "react";
+import { IUser } from "@/interfaces/interfaz";
 
-
-export const Logged: React.FC = () => {
+export const Logged: React.FC = ():React.ReactNode => {
   const router = useRouter();
+  
+  const [userName, setUserName] = useState<string>('')
+
+  useEffect(() => {
+    const name: any = localStorage.getItem("userDataLogin")
+    const nameParsed: IUser = JSON.parse(name)
+    setUserName(nameParsed.name)
+  }, [])
 
   const logoutHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
     localStorage.removeItem("loginToken");
@@ -21,7 +30,7 @@ export const Logged: React.FC = () => {
         <li>
           <Link className="buttonSecondary" href="/profile">
             <AccountCircleIcon />
-            Perfil
+            {userName}
           </Link>
         </li>
         <li>
