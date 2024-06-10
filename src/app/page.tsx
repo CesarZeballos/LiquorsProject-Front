@@ -28,10 +28,10 @@ export default function Landing() {
         </div>
         
         <ExpandMoreIcon className="flex items-center mt-6" />
-        <div className="flex space-x-4">
-          {/*FILTRA DESDE EL BACK SOLO GIN */}
-          <BannerProductsGin />
-        </div>
+          <div className="flex space-x-4">
+            {/*FILTRA DESDE EL BACK SOLO GIN */}
+            <BannerProductsGin />
+          </div>
 
          {/*SECCION TRES DE TARJETAS (aqui podria ir otra a eleccion*/}
          <div className="w-full bg-grey4">

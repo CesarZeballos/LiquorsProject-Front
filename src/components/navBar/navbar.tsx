@@ -17,6 +17,9 @@ export const NavBar: React.FC = () => {
     }
   }, [pathname]);
 
+  
+  //________________________________________________________________________
+
   return (
     <div>
       <nav className="pt-2">
