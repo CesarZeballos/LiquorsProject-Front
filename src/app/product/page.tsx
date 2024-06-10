@@ -27,7 +27,7 @@ const Product: React.FC = (): React.ReactNode => {
   useEffect(() => {
     const rol: any = localStorage.getItem("userDataLogin");
     const role = JSON.parse(rol)
-    setHasRol(4)
+    setHasRol(role.role)
   }, []);
 
   const router = useRouter();
