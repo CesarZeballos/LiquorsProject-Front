@@ -24,11 +24,12 @@ const Product: React.FC = (): React.ReactNode => {
   const [productCards, setProductCards] = useState<any[]>([]);
 
   useEffect(() => {
-
     const userDataLogin = localStorage.getItem("userDataLogin");
-    const userData = JSON.parse(userDataLogin!);
-    console.log("este es el role", userData.role);
-    setHasRol(userData.role);
+    if (userDataLogin) {
+      const userData = JSON.parse(userDataLogin!);
+      console.log("este es el role", userData.role);
+      setHasRol(userData.role);
+    }
   }, []);
 
   const router = useRouter();
@@ -89,26 +90,31 @@ const Product: React.FC = (): React.ReactNode => {
       </section>
 
       <div className="flex flex-row relative pl-5 mb-0 pt-0 bg-greyVivino">
-
         <section className="flex pt-10 pb-10 w-10/12 bg-greyVivino items-start absolute">
           <div className="flex flex-col">
-            <button className="mb-7 py-1 absolute w-1/6 px-4  bg-wine text-white rounded-lg" onClick={toggleFilterVisibility}>
+            <button
+              className="mb-7 py-1 absolute w-1/6 px-4  bg-wine text-white rounded-lg"
+              onClick={toggleFilterVisibility}
+            >
               {isFilterVisible ? "Ocultar Filtro" : "Mostrar Filtro"}
             </button>
             <div className="flex mt-5 w-full">
-              {isFilterVisible && <ProductFilterCard  fetchFilterBack={fetchFilterBack} onFilterChange={handleFilterChange} />}
+              {isFilterVisible && (
+                <ProductFilterCard
+                  fetchFilterBack={fetchFilterBack}
+                  onFilterChange={handleFilterChange}
+                />
+              )}
             </div>
           </div>
         </section>
 
         <div className="flex  mt-0 mb-96 bg-greyVivino ml-96">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <MapProductCard />
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <MapProductCard />
+          </div>
         </div>
-
       </div>
-
 
       {productCards.length >= page * 9 && (
         <div className="flex justify-center mt-4">

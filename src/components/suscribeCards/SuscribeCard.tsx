@@ -8,6 +8,7 @@ const SuscribeCard = ({ product }: { product: ISuscribe }) => {
   const router = useRouter();
   const [userId, setUserId] = useState<string | null>(null);
   const [role, setRole] = useState(0);
+  const [userData, setUserData] = useState();
   /*   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null); */
@@ -16,6 +17,7 @@ const SuscribeCard = ({ product }: { product: ISuscribe }) => {
     const userDataLogin = localStorage.getItem("userDataLogin");
     if (userDataLogin) {
       const userData = JSON.parse(userDataLogin);
+      setUserData(userData);
       setRole(userData.role);
       setUserId(userData.id);
     }
@@ -26,6 +28,7 @@ const SuscribeCard = ({ product }: { product: ISuscribe }) => {
       if (role === product.role) {
         console.log(role);
         alert(`Ya eres un usuario ${product.type}`);
+        return;
       }
       if (role === 4 && product.role === 3) {
         const response = await axios.post(
@@ -38,19 +41,27 @@ const SuscribeCard = ({ product }: { product: ISuscribe }) => {
         );
         console.log(response);
         router.push(response.data.init_point);
-      } else {
-        const response = await axios.post(
+        return;
+      }
+      if (role === 3 && product.role === 4) {
+        alert("Ya eres un usuario seller");
+        return;
+      }
+      if (userData) {
+        const res = await axios.post(
           `https://liquors-project.onrender.com/subscription/${userId}`,
           {
             type: product.type,
             amount: product.price,
           }
         );
-        console.log(response);
-        router.push(response.data.init_point);
+        console.log(res);
+        router.push(res.data.init_point);
+      } else {
+        alert("Debes ingresar para poder suscribirte");
       }
     } catch (error) {
-      console.error("Error during subscription:", error);
+      console.error("Error handling payment:", error);
     }
   };
 
