@@ -11,14 +11,14 @@ const Product: React.FC = (): React.ReactNode => {
   const dispatch = useDispatch();
 
   const [filters, setFilters] = useState<any>({});
-  console.log(filters);
+
 
   //TOKEN
   const [token, setToken] = useState<string | null>(null)
   //ESTADO LOCAL SEARCHBAR
   const [search, setSearch] = useState({ item: "" });
   //ESTADO LOCAL ROL DE USUARIO
-  const [hasRol, setHasRol] = useState<number | null>(4);
+  const [hasRol, setHasRol] = useState<number>();
   //ESTADO LOCAL PARA LOGICA FILTRO SEGUN ROL DE USER.
   const [isFilterVisible, setIsFilterVisible] = useState<boolean>();
   //ESTADO PARA PAGINADO.
@@ -26,19 +26,18 @@ const Product: React.FC = (): React.ReactNode => {
   const [productCards, setProductCards] = useState<any[]>([]);
 
   useEffect(() => {
+    const userToken = localStorage.getItem("loginToken");
+    if (userToken) {
+      const parsedToken = JSON.parse(userToken);
+      setToken(parsedToken);
 
-      const userToken = localStorage.getItem("loginToken");
-      setToken(JSON.parse(userToken!));
-  }, [])
-
-  useEffect(() => {
-    if (token) {
       const userDataLogin = localStorage.getItem("userDataLogin");
-      const userData = JSON.parse(userDataLogin!);
-      console.log("este es el role", userData.role);
-      setHasRol(userData.role);
+      if (userDataLogin) {
+        const userData = JSON.parse(userDataLogin);
+        setHasRol(userData.role);
+      }
     }
-  }, []);
+  }, [])
 
   const router = useRouter();
 
