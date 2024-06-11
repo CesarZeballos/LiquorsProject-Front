@@ -84,9 +84,11 @@ const HalfRecommendation = ({
         >
           {title}
         </h1>
-        <p className="mt-8 text-lg  text-center" style={{ color: color }}>
-          {description}
-        </p>
+        <b>
+          <p className="mt-10 text-lg  text-center" style={{ color: color }}>
+            {description}
+          </p>
+        </b>
       </div>
     </div>
   );

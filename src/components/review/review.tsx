@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchReviews } from "@/utils/getReviews";
 import { IReview } from "@/interfaces/interfaz";
@@ -9,12 +9,16 @@ import { RootState } from "@/store/store";
 import { deleteReview } from "@/utils/deleteReviews";
 
 export const Review = ({ review }: { review: IReview }) => {
+  const [data, setData] = useState<any>();
   const dataReviews: IReview[] = useSelector(
     (state: RootState) => state.reviews.data
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const userDataLogin = localStorage.getItem("userDataLogin");
+    const userData = JSON.parse(userDataLogin!);
+    setData(userData);
     fetchReviews(dispatch);
     console.log("dataReviews", dataReviews);
   }, [dispatch]);
@@ -47,12 +51,16 @@ export const Review = ({ review }: { review: IReview }) => {
             ))}
           </div>
         </div>
-        <button
-          onClick={() => handleDelete(id)}
-          className="text-red-600 hover:text-red-800 transition-colors"
-        >
-          <DeleteIcon />
-        </button>
+        {data?.name === name ? (
+          <button
+            onClick={() => handleDelete(id)}
+            className="text-red-600 hover:text-red-800 transition-colors"
+          >
+            <DeleteIcon />
+          </button>
+        ) : (
+          ""
+        )}
       </div>
       <p className="text-gray-600 italic">"{comment}"</p>
       <h3 className="text-right text-sm font-medium text-gray-500">- {name}</h3>

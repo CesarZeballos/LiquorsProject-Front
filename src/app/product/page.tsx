@@ -8,12 +8,11 @@ import { fetchProducts } from "@/utils/getProducts";
 import { useDispatch } from "react-redux";
 
 const Product: React.FC = (): React.ReactNode => {
-
   const dispatch = useDispatch();
-  
+
   const [filters, setFilters] = useState<any>({});
   console.log(filters);
-  
+
   //TOKEN
   const [token, setToken] = useState<string | null>(null)
   //ESTADO LOCAL SEARCHBAR
@@ -27,15 +26,17 @@ const Product: React.FC = (): React.ReactNode => {
   const [productCards, setProductCards] = useState<any[]>([]);
 
   useEffect(() => {
+
       const userToken = localStorage.getItem("loginToken");
       setToken(JSON.parse(userToken!));
   }, [])
 
   useEffect(() => {
     if (token) {
-      const rol: any = localStorage.getItem("userDataLogin");
-      const role = JSON.parse(rol)
-      setHasRol(4)
+      const userDataLogin = localStorage.getItem("userDataLogin");
+      const userData = JSON.parse(userDataLogin!);
+      console.log("este es el role", userData.role);
+      setHasRol(userData.role);
     }
   }, []);
 
@@ -117,9 +118,13 @@ const Product: React.FC = (): React.ReactNode => {
 
       </div>
 
+
       {productCards.length >= page * 9 && (
         <div className="flex justify-center mt-4">
-          <button onClick={loadMoreProducts} className="bg-wine text-white py-2 px-4 rounded-md">
+          <button
+            onClick={loadMoreProducts}
+            className="bg-wine text-white py-2 px-4 rounded-md"
+          >
             Siguiente página
           </button>
         </div>

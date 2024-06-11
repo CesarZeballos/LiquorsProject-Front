@@ -9,6 +9,7 @@ export const arraySuscribe: ISuscribe[] = [
     description4: "Descuentos en eventos.",
     price: 100,
     type: "premium",
+    role: 4,
   },
 
   {
@@ -18,6 +19,7 @@ export const arraySuscribe: ISuscribe[] = [
     description3: "Puedes hacer otras cosas we",
     description4: "Descripción mágica que no se me ocurre",
     price: 200,
-    type: "enterprise",
+    type: "seller",
+    role: 3,
   },
 ];
