@@ -62,7 +62,7 @@ export const Review = ({ review }: { review: IReview }) => {
           ""
         )}
       </div>
-      <p className="text-gray-600 italic">"{comment}"</p>
+      <p className="text-gray-600 italic">{`"${comment}"`}</p>
       <h3 className="text-right text-sm font-medium text-gray-500">- {name}</h3>
     </div>
   );
