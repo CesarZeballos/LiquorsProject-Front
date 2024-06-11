@@ -14,10 +14,12 @@ const Product: React.FC = (): React.ReactNode => {
   const [filters, setFilters] = useState<any>({});
   console.log(filters);
   
+  //TOKEN
+  const [token, setToken] = useState<string | null>(null)
   //ESTADO LOCAL SEARCHBAR
   const [search, setSearch] = useState({ item: "" });
   //ESTADO LOCAL ROL DE USUARIO
-  const [hasRol, setHasRol] = useState<number>();
+  const [hasRol, setHasRol] = useState<number | null>(4);
   //ESTADO LOCAL PARA LOGICA FILTRO SEGUN ROL DE USER.
   const [isFilterVisible, setIsFilterVisible] = useState<boolean>();
   //ESTADO PARA PAGINADO.
@@ -25,9 +27,16 @@ const Product: React.FC = (): React.ReactNode => {
   const [productCards, setProductCards] = useState<any[]>([]);
 
   useEffect(() => {
-    const rol: any = localStorage.getItem("userDataLogin");
-    const role = JSON.parse(rol)
-    setHasRol(role.role)
+      const userToken = localStorage.getItem("loginToken");
+      setToken(JSON.parse(userToken!));
+  }, [])
+
+  useEffect(() => {
+    if (token) {
+      const rol: any = localStorage.getItem("userDataLogin");
+      const role = JSON.parse(rol)
+      setHasRol(4)
+    }
   }, []);
 
   const router = useRouter();
