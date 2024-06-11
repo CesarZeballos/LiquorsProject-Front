@@ -72,7 +72,7 @@ const Product: React.FC = (): React.ReactNode => {
   };
 
   const toggleFilterVisibility = () => {
-    if (hasRol === 4) {
+    if (hasRol === 4 || hasRol === 3) {
       setIsFilterVisible(!isFilterVisible);
     } else {
       alert("Debe suscribirse a una cuenta premium para acceder al filtro.");

@@ -32,16 +32,24 @@ export const ProductsListSeller = () => {
 
     useEffect(() => {
         try {
-            fetchProductsSeller(dataUser.id).then((data) => {
+            fetchProductsSeller(dataUser.id, token.token).then((data) => {
                 setDataProducts(data);
+                console.log(data)
             })
             } catch (error) {
                 console.log(error)
             }
     }, [dataUser.id])
+
     return <div>
-        {dataProducts.map((product: Product) => (
-            <ProductCardDashboard key={product.id} product={product} />
-        ))}
+        <h1 className="text-3xl font-bold">Mis Productos publicados</h1>
+        <div>
+            {!dataProducts && <p className="text-xl">No hay productos publicados</p>}
+            {dataProducts && 
+                dataProducts.map((product: Product) => (
+                <ProductCardDashboard key={product.id} product={product} />
+                ))  
+            }
+        </div>
     </div>;
 }

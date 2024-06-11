@@ -121,15 +121,7 @@ export const ProductForm = () => {
         size: "",
         category: "",
     })
-    const [errorProduct, setErrorProduct] = useState<IProductFormErrorProps>({
-        name: "",
-        description: "",
-        country: "",
-        abv: "",
-        imgUrl: "",
-        size: "",
-        category: ""
-    })
+    const [errorProduct, setErrorProduct] = useState<{ [key: string]: string }>({})
 
     useEffect(() => {
         if( typeof window !== "undefined" && window.localStorage) {
@@ -154,6 +146,8 @@ export const ProductForm = () => {
             const updatedDataProduct = { ...prevDataProduct, [name]: value };
             return updatedDataProduct;
         })
+        const errorInput = validateProductForm({ ...dataProduct, [name]: value });
+        setErrorProduct({...errorProduct, [name]: errorInput[name] || ""})
     }
 
     useEffect(() => {
@@ -170,8 +164,6 @@ export const ProductForm = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
-        //aca va la logica de la imagen..
         
         const updatedDataProduct = {
             ...dataProduct,
