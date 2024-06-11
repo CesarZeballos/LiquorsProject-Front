@@ -79,7 +79,7 @@ const HalfRecommendation = ({
       />
       <div className="relative z-10 text-base">
         <h1
-          className="text-4xl mb-96 font-bold text-center"
+          className="text-4xl mb-96 font-plus-jakarta-sanss text-center"
           style={{ color: color }}
         >
           {title}
