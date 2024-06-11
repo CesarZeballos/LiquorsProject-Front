@@ -1,7 +1,7 @@
 import { IProductForm, IProductFormErrorProps } from "@/components/productForm/types";
 
-export function validateProductForm(data: IProductForm): IProductFormErrorProps {
-    let errors: IProductFormErrorProps = {};
+export function validateProductForm(data: IProductForm) {
+    let errors: { [key: string]: string } = {};
   
     // Validar nombre
     if (!data.name) {
