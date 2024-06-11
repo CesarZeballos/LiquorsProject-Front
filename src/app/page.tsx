@@ -4,12 +4,13 @@ import React from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import BannerProductsGin from "@/components/bannerProductHome/bannerGin";
 import SuscribeCards from "@/components/suscribeCards/SuscribeCards";
+import 'tailwindcss/tailwind.css';
 
 export default function Landing() {
   return (
     <div>
-      <Carousel></Carousel>
-      
+      <Carousel />
+
       <div className="flex flex-col bg-greyMLfilter scroll-smooth overflow-auto pt-10 items-center">
         {/*SECCION UNO DE TARJETAS (todas las categorias) */}
         <h1 className="text-center text-2xl text-black font-plus-jakarta-sans font-normal mb-4">
