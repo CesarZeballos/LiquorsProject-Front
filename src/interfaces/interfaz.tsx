@@ -64,6 +64,15 @@ export interface IRecommendation {
   link: string;
 }
 
+export interface UserDataLogin {
+    name: string,
+    email: string,
+    id: string,
+    role: number,
+    token: string,
+}
+
+
 export interface ProductFiltered {
   item: string;
 }

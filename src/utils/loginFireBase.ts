@@ -1,4 +1,5 @@
 import axios from "axios";
+import { UserDataLogin } from "@/interfaces/interfaz";
 
 const loginUserFireBase = async (formData: any, auth:any, signInWithEmailAndPassword: any ,setIsSuccess: any, setError: any, router: any, setIsLoading: any) => {
 
@@ -19,7 +20,7 @@ const loginUserFireBase = async (formData: any, auth:any, signInWithEmailAndPass
           }
         const response = await axios.post("https://liquors-project.onrender.com/users/signin", loginObjet)
         //USERDATA LOGIN
-        const userDataLogin: any = {
+        const userDataLogin: UserDataLogin = {
           name: formData.name, 
           email: userCredential.user.email,
           id: response.data.id,
