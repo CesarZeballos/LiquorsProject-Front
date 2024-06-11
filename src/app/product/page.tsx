@@ -11,8 +11,10 @@ const Product: React.FC = (): React.ReactNode => {
   const dispatch = useDispatch();
 
   const [filters, setFilters] = useState<any>({});
-  console.log(filters);
 
+
+  //TOKEN
+  const [token, setToken] = useState<string | null>(null)
   //ESTADO LOCAL SEARCHBAR
   const [search, setSearch] = useState({ item: "" });
   //ESTADO LOCAL ROL DE USUARIO
@@ -24,6 +26,7 @@ const Product: React.FC = (): React.ReactNode => {
   const [productCards, setProductCards] = useState<any[]>([]);
 
   useEffect(() => {
+
     const userDataLogin = localStorage.getItem("userDataLogin");
     if (userDataLogin) {
       const userData = JSON.parse(userDataLogin!);
@@ -31,6 +34,7 @@ const Product: React.FC = (): React.ReactNode => {
       setHasRol(userData.role);
     }
   }, []);
+
 
   const router = useRouter();
 
