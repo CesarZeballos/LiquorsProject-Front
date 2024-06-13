@@ -11,7 +11,7 @@ export const fetchProducts = async (dispatch: AppDispatch, page: any) => {
     queryParam = `?page=${page}`; 
   }
   try {
-      const res = await axios.get<Product[]>(`https://liquors-project.onrender.com/products/${queryParam}`);
+      const res = await axios.get<Product[]>(`https://liquors-project.onrender.com/products/?limit=100`);
       dispatch(clearProducts());
       dispatch(readProducts(res.data))
   } catch (err) {

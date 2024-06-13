@@ -13,7 +13,7 @@ export const fetchProductsFiltered = async (dispatch: AppDispatch, filters: any,
       //falta logica en el back para rate
       const rate = filters.selectedRating
       console.log("valor de abv que envio a back", abv, "valor que envio al back de category",category);
-      const res = await axios.get<Product[]>(`https://liquors-project.onrender.com/products/?category=${category}`);
+      const res = await axios.get<Product[]>(`https://liquors-project.onrender.com/products/?category=${category}&limit=30`);
       console.log("respuesta back", res);
       dispatch(clearProductsFiltered());
       dispatch(readProductsFiltered(res.data));

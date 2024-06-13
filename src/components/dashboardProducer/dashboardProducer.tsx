@@ -13,7 +13,7 @@ export const DashboardProducer = () => {
     }
   
     return <div className="flex flex-row justify-center gap-6 mt-6">
-        <div className="flex flex-col pt-5 bg-greyVivino gap-6 p-6 rounded">
+        <div className="flex flex-col pt-5 shadow-lg bg-white gap-6 p-6 rounded-lg">
           <button className="buttonSecondary hover:cursor-pointer" value="infoUser" onClick={HandlerSearchBar}>Datos</button>
           <button className="buttonSecondary hover:cursor-pointer" value="products" onClick={HandlerSearchBar}>Productos publicados</button>
           <button className="buttonPrimary hover:cursor-pointer" value="addProduct" onClick={HandlerSearchBar}>Agregar un producto</button>

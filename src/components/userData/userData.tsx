@@ -21,7 +21,7 @@ export const UserData: React.FC = () => {
     const roles = ["Usuario", "Administrador", "Vendedor", "Premium"];
     
     return (
-        <div className="flex flex-col justify-center w-fit p-6 bg-greyVivino">
+        <div className="flex flex-col justify-center  shadow-lg rounded-lg w-fit p-6 bg-white">
             <h1 className="pb-8 text-gray-600 text-xl font-normal">Datos del usuario</h1>
             <p className="pb-2 text-gray-600 text-l font-normal">Nombre de la marca: {userData.name}</p>
             <p className="pb-2 text-gray-600 text-l font-normal">Email: {userData.email}</p>

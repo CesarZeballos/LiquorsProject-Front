@@ -30,13 +30,15 @@ const config: Config = {
         grey4: "#605F60",
         grey5: "#484748",
         greyMLfilter: "#EDEDED",
+        greyTextMl: "#878f9f",
         greyVivino: "#fafafa",
         blackup: "#1e1e1e",
         darkred: "#330000",
         darkblue: "#000033",
         darkgreen: "#003300",
         blueGoogle: "#0086f9",
-        greenVivino: "#006b4d"
+        greenVivino: "#006b4d",
+        wineMasOscuroDos: "#68091e"
       },
       fontFamily: {
         Lato: ["Lato", "sans-serif"],

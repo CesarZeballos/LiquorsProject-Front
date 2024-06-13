@@ -23,6 +23,11 @@ export interface Product {
   userId: string;
 }
 
+export interface IdAndToken {
+  token: string,
+  id: string,
+}
+
 export interface ProductsState {
   data: Product[];
   ginProducts: Product[];

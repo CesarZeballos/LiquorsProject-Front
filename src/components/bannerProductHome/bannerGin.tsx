@@ -5,12 +5,19 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "tailwindcss/tailwind.css";
 import { useSelector } from "react-redux";
+import LastPageIcon from '@mui/icons-material/LastPage';
+import { useRouter } from "next/navigation";
 
 const BannerProductsGin: React.FC = () => {
+
+
   const scrollContainer = useRef<HTMLDivElement>(null);
   const [currentSection, setCurrentSection] = useState(0);
   const cardsPerPage = 3;
   const dataGlobal = useSelector((state: any) => state.products.data);
+
+  const router = useRouter()
+
   
   // Calcula el número máximo de secciones basado en la cantidad de tarjetas y tarjetas por página.
   const maxSections = Math.ceil(dataGlobal.length / cardsPerPage) - 1;
@@ -37,7 +44,7 @@ const BannerProductsGin: React.FC = () => {
   }, [currentSection]);
 
   return (
-    <div className="relative flex justify-center flex-col pt-7 pb-4 bg-greyMLfilter w-11/12 max-w-screen-lg mx-auto">
+    <div className="relative flex justify-center flex-col pt-7 pb-4 bg-greyVivino w-11/12 max-w-screen-lg mx-auto">
       <div className="flex justify-center items-center relative w-full">
         {/* FLECHA IZQUIERDA */}
         <button
@@ -69,7 +76,16 @@ const BannerProductsGin: React.FC = () => {
           </div>
         </button>
       </div>
-      <section className="flex justify-start text-white mt-4"></section>
+      {/* Botón "Ver más" */}
+      {currentSection === maxSections && (
+          <div className="flex justify-end mt-4">
+            <button onClick={() => router.push("/product")} className="bg-wine text-white py-2 px-4 rounded-md">
+            Ver más
+              <LastPageIcon className="mr-1 ml-3" />
+              
+            </button>
+          </div>
+        )}
     </div>
   );
 };

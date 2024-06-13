@@ -15,10 +15,10 @@ import { getStorage } from "firebase/storage";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 const categories = [
-    "vino",
-    "ron",
-    "whisky",
-    "spirit",
+    "Vino",
+    "Ron",
+    "Whisky",
+    "Spirit",
     "Gin"
 ]
 

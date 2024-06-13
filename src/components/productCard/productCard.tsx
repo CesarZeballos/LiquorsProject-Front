@@ -48,7 +48,6 @@ const ProductCard: React.FC<{ product: Product}> = ({product}): React.ReactNode 
         <span className="text-gray-700">4.5</span>
         <div className="flex flex-row justify-center flex-grow mx-2">
           <HalfRating />
-        
         </div>
         <FavoriteBorderIcon className="text-wineMasOscuro " />
       </div>

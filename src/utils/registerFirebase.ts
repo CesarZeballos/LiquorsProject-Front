@@ -21,7 +21,7 @@ const registerUserFirebase = async (formData: any, auth:any, createUserWithEmail
                   name: formData.name, 
                   email: userFirebase.email, 
                   id: response.data.id,
-                  rol: response.data.role,
+                  role: response.data.role,
                   token: response.data.token
             }
             const newData = JSON.stringify(dataRegisterBackLog)
