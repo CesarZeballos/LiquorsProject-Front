@@ -29,12 +29,13 @@ export const ProductsListSeller = () => {
         setDataUser(JSON.parse(storeData!));
         }
     }, [pathname])
+    console.log("user",dataUser)
 
     useEffect(() => {
         try {
+            console.log("userid", dataUser.id)
             fetchProductsSeller(dataUser.id, token.token).then((data) => {
                 setDataProducts(data);
-                console.log(data)
             })
             } catch (error) {
                 console.log(error)

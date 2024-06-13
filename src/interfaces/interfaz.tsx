@@ -12,6 +12,7 @@ export interface Register {
 
 export interface Product {
   id: string;
+  active: boolean;
   name: string;
   description: string;
   imgUrl: string;
@@ -20,7 +21,7 @@ export interface Product {
   brand: string;
   country: string;
   size: string;
-  userId: string;
+  rate: number;
 }
 
 export interface ProductsState {

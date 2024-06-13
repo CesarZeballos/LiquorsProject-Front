@@ -31,6 +31,19 @@ export interface IProductForm {
     size: string;
   }
 
+  export interface IProductChangeStatus {
+    id: string;
+    name: string;
+    description: string;
+    imgUrl: string;
+    category: string;
+    abv: number;
+    brand: string;
+    country: string;
+    size: string;
+    status: boolean;
+  }
+
 
 
 
