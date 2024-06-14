@@ -10,13 +10,18 @@ export const deleteReview = async (reviewId: string, dispatch: AppDispatch) => {
     const idUser = JSON.parse(userDataLogin);
     const idP = idProduct.id;
     const idU = idUser.id;
-    const url = `https://liquors-project.onrender.com/reviews/${reviewId}?userId=${idU}&productId=${idP}`;
+    const token = idUser.token;
+    const url = `https://liquors-project.onrender.com/reviews/${reviewId}`;
 
     try {
-      await axios.delete(url);
+      await axios.delete(url, {
+        headers: {
+          authorization: `Bearer: ${token}`,
+        },
+      });
       dispatch(removeReview(reviewId));
     } catch (error) {
-      throw new Error("Error eliminando la review");
+      console.log("error al deletear", error);
     }
   }
 };

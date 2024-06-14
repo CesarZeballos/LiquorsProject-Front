@@ -27,7 +27,6 @@ export default function Landing() {
             Only <b className="text-gin">Gins</b>
           </h1>
         </div>
-        
         <ExpandMoreIcon className="flex items-center mt-6" />
         <div className="flex space-x-4">
           {/*FILTRA DESDE EL BACK SOLO GIN */}
@@ -44,7 +43,7 @@ export default function Landing() {
 
         <ExpandMoreIcon className="flex items-center mt-6" />
         <div className="flex space-x-4">
-            {/*FILTRA DESDE EL BACK SOLO GIN */}
+            {/*FILTRA DESDE EL BACK SOLO WINE */}
             <BannerProductsWine />
         </div>
 

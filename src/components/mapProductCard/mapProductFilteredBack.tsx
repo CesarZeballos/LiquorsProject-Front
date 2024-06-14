@@ -24,11 +24,9 @@ export const MapProductCardFilterBack: React.FC = (): React.ReactNode => {
       <>
           {/*Mapea el arreglo de productos y renderiza un Card para cada uno*/}
             {productsFiltered.map((product:any) => (
-              <Link href={`/product/${product.name}`}>
-                <p   onClick={() => detailProduct(product)}>
+             <p>
                   <ProductCard key={product.id} product={product} />
-                </p>
-              </Link>
+              </p>
             ))}
       </>
   );

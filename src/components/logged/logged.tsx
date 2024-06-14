@@ -5,11 +5,15 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useEffect, useState } from "react";
 import { IUser } from "@/interfaces/interfaz";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
 
 export const Logged: React.FC = ():React.ReactNode => {
   const router = useRouter();
   
   const [userName, setUserName] = useState<string>('')
+  const [userRole, setUserRole] = useState<string>('')
+
 
   useEffect(() => {
     const name: any = localStorage.getItem("userDataLogin")
@@ -24,10 +28,23 @@ export const Logged: React.FC = ():React.ReactNode => {
     
   };
 
+  const favHandler = () => {
+    router.push("/profile/dashboardUser/favoritos");
+    setTimeout(() => {
+      window.location.reload();
+    },500)
+  };
+
+
+
   return (
     <div>
       <ul className="flex space-x-6">
         <li>
+          <span onClick={favHandler} className="buttonSecondary">
+            <FavoriteBorderIcon/>
+            Favoritos
+          </span>
           <Link className="buttonSecondary" href="/profile">
             <AccountCircleIcon />
             {userName}

@@ -35,16 +35,11 @@ export const MapUserHistorialReviews: React.FC = (): React.ReactNode => {
     return (
         <>  
             {/*MAPEA UNA CARD DE REVIEW, POR CADA REVIEW DEL USUARIO. */}
-            {/*reviewData.map((product: IReview) => (
+            {reviewData.map((product: IReview) => (
                 <div className="flex flex-col  ">
                     <CardHistoryReview  key={product.id} product={product}/>
                 </div>
-            ))*/}
-            <CardHistoryReview/>
-            <CardHistoryReview/>
-            <CardHistoryReview/>
-            <CardHistoryReview/>
-            
+            ))}
         </>
     )
 }

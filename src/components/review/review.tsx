@@ -17,14 +17,15 @@ export const Review = ({ review }: { review: IReview }) => {
 
   useEffect(() => {
     const userDataLogin = localStorage.getItem("userDataLogin");
-    const userData = JSON.parse(userDataLogin!);
-    setData(userData);
-    fetchReviews(dispatch);
-    console.log("dataReviews", dataReviews);
-  }, [dispatch]);
+    if (userDataLogin) {
+      const userData = JSON.parse(userDataLogin!);
+      setData(userData);
+    }
+    /*     fetchReviews(dispatch); */
+  }, [dispatch, dataReviews]);
 
   const { id, rate, comment, userId } = review;
-  const { name } = userId;
+  const name = userId?.name
   const handleDelete = async (id: string) => {
     if (confirm("¿Estás seguro de que quieres eliminar esta review?")) {
       try {
@@ -62,7 +63,7 @@ export const Review = ({ review }: { review: IReview }) => {
           ""
         )}
       </div>
-      <p className="text-gray-600 italic">"{comment}"</p>
+      <p className="text-gray-600 italic">`{comment}`</p>
       <h3 className="text-right text-sm font-medium text-gray-500">- {name}</h3>
     </div>
   );

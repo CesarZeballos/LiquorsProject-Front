@@ -101,8 +101,7 @@ export const AccountInfoCard = () => {
 
     return (
         <>
-            <div className="flex flex-col font-plus-jakarta-sans items-center justify-center mt-10 pt-20  ml-80 pb-96 h-screen">
-            <h1 className='pt-3 pb-4 mt-3 font-plus-jakarta-sans font-semibold text-lg'> ¡Bienvenido {dataUser.name}!</h1>
+            <div className="flex flex-col font-plus-jakarta-sans items-center justify-center mt-10 pt-20  pb-96 h-screen">
                 <div className="relative bg-white mt-20 p-6 rounded-lg shadow-lg w-96 border-r-8 border-wine">
                     <div className="absolute -top-16 left-1/2 transform -translate-x-1/2">
                         <img

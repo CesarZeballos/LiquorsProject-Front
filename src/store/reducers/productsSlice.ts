@@ -7,6 +7,7 @@ const initialState: ProductsState = {
   wineProducts: [],
   dataFiltered: [],
   page: [],
+  favorites: [],
 };
 
 /* este es el crud redux de products */
@@ -29,20 +30,28 @@ const productsSlice = createSlice({
     clearGinProducts(state) {
       state.ginProducts = [];
     },
-    //REVISAR ESTADO GLOBAL PRODUCT FILTERED
     readProductsFiltered(state, action: PayloadAction<Product[]>) {
       state.dataFiltered = state.dataFiltered.concat(action.payload);
     },
     clearProductsFiltered(state) {
       state.dataFiltered = [];
     },
-    //_______________________________________
-
     readWineProducts(state, action: PayloadAction<Product[]>) {
       state.wineProducts = state.wineProducts.concat(action.payload);
     },
     clearWineProducts(state) {
       state.wineProducts = [];
+    },
+    readFavoriteProducts(state, action: PayloadAction<Product[]>) {
+      state.favorites = state.favorites.concat(action.payload);
+    },
+    clearFavoriteProducts(state) {
+      state.favorites = [];
+    },
+    deleteFavoriteProduct(state, action: PayloadAction<string>) {
+      state.favorites = state.favorites.filter(
+        (product) => product.id !== action.payload
+      );
     },
     updateProducts(state, action) {},
     deleteProducts(state, action) {},
@@ -60,6 +69,9 @@ export const {
   clearGinProducts, 
   readGinProducts, 
   deleteProducts, 
-  clearProducts } = productsSlice.actions;
+  readFavoriteProducts,
+  clearFavoriteProducts,
+  clearProducts,
+  deleteFavoriteProduct } = productsSlice.actions;
 
 export default productsSlice.reducer;

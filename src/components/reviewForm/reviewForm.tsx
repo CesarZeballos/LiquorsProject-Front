@@ -1,9 +1,13 @@
 "use client";
 import { IReview } from "@/interfaces/interfaz";
 import { AppDispatch } from "@/store/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { readReviews } from "@/store/reducers/reviewsSlice";
+import {
+  clearReviews,
+  createReviews,
+  readReviews,
+} from "@/store/reducers/reviewsSlice";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
@@ -11,13 +15,22 @@ import { useRouter } from "next/navigation";
 
 export const ReviewForm = () => {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+  const [token, setToken] = useState<string | null>(null);
+  const [userData, setUserData] = useState<any>(null);
   const [formData, setFormData] = useState({
     comment: "",
     rate: 0,
   });
-  const userDataLogin = localStorage.getItem("userDataLogin");
 
-  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    const userDataLogin = localStorage.getItem("userDataLogin");
+    if (userDataLogin) {
+      const userDataParse = JSON.parse(userDataLogin);
+      setToken(userDataParse.token);
+      setUserData(userDataParse);
+    }
+  }, []);
 
   const clearInput = () => {
     setFormData({ comment: "", rate: 0 });
@@ -29,7 +42,7 @@ export const ReviewForm = () => {
   };
 
   const handleRatingChange = (
-    event: React.ChangeEvent<{}>,
+    event: React.SyntheticEvent<Element, Event>,
     value: number | null
   ) => {
     setFormData({ ...formData, rate: value ?? 0 });
@@ -37,18 +50,24 @@ export const ReviewForm = () => {
 
   const postReviews = async (formData: { comment: string; rate: number }) => {
     const detailProduct = localStorage.getItem("detailProduct");
-    const detailUser = localStorage.getItem("userDataLogin");
-    if (detailProduct && detailUser) {
+    if (detailProduct && token) {
       const idProduct = JSON.parse(detailProduct);
-      const idUser = JSON.parse(detailUser);
+      const idUser = userData;
       const idP = idProduct.id;
       const idU = idUser.id;
+
       try {
-        const res = await axios.post<IReview[] | any>(
+        const res = await axios.post<any>(
           `https://liquors-project.onrender.com/reviews/?userId=${idU}&productId=${idP}`,
-          formData
+          formData,
+          {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          }
         );
-        dispatch(readReviews(res.data));
+        console.log(res.data);
+        dispatch(createReviews(res.data)); /* posible 2do error */
         clearInput();
       } catch (err) {
         console.error(err);
@@ -58,7 +77,7 @@ export const ReviewForm = () => {
 
   const handlerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (userDataLogin) {
+    if (userData) {
       postReviews(formData);
     } else {
       alert("Debes ingresar para realizar una reseña!");
@@ -67,7 +86,7 @@ export const ReviewForm = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-8 rounded-xl shadow-md  ">
+    <div className="max-w-md mx-auto bg-white p-8 rounded-xl shadow-md">
       <h1 className="text-2xl font-bold text-gray-800 mb-4">
         ¡Queremos conocer tu opinión sobre este producto!
       </h1>
@@ -96,7 +115,7 @@ export const ReviewForm = () => {
 
         <button
           type="submit"
-          className="bg-wine text-white py-2 px-4 rounded-md  hover:bg-red-700 transition-colors"
+          className="bg-wine text-white py-2 px-4 rounded-md hover:bg-red-700 transition-colors"
         >
           Postear opinión
         </button>

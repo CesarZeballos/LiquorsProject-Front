@@ -22,7 +22,7 @@ export const MenuDashboard: React.FC = (): React.ReactNode => {
     
     return (
         <>
-            <div className="flex h-screen mr-36 font-plus-jakarta-sans">
+            <div className="flex h-screen font-plus-jakarta-sans">
                     {/* Barra lateral */}
                     <aside className="bg-wine w-64 flex-shrink-0">
                         <div className="h-full flex flex-col justify-between pt-4">
@@ -37,7 +37,7 @@ export const MenuDashboard: React.FC = (): React.ReactNode => {
 
                                     <Link href="/profile" className="block py-2 px-6 text-white hover:text-wine hover:bg-greyMLfilter transition duration-300">Informacion de la cuenta</Link>
                                     {dataUser.role == "1" && (
-                                        <Link href="/profile/dashboardUser/historialReviews" className="block py-2 px-6 text-white hover:text-wine hover:bg-greyMLfilter transition duration-300">Historial de reviews</Link>  
+                                        <Link href="/profile/dashboardUser/favoritos" className="block py-2 px-6 text-white hover:text-wine hover:bg-greyMLfilter transition duration-300">Favoritos</Link>  
                                     )}
                                     {/*SUPER ADMIN ES ROL 2 */}
                                     {dataUser.role == "2" && (
